@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo dos Quatro Cantos - Projetos de Matemática</title>
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-    <link href="[https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap](https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap)" rel="stylesheet">
-    <link href="[https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined](https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined)" rel="stylesheet" />
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,10 +52,12 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Projetos de Matemática Criativa. <span class="material-symbols-outlined footer-icon">gamepad</span> Fonte: Press Start 2P.</p>
+        <p>&copy; <span id="currentYear"></span> Projetos de Matemática Criativa. <span class="material-symbols-outlined footer-icon">gamepad</span> Fonte: Press Start 2P.</p>
     </footer>
 
     <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
         const quizData = [
             {
                 question: "1. Qual área mais te atrai?",
@@ -209,11 +210,11 @@
         const userAnswers = new Array(quizData.length).fill(null);
 
         function renderQuestionCard(index) {
-            quizArea.innerHTML = ''; // Limpa a área para o novo card
+            quizArea.innerHTML = ''; 
             const q = quizData[index];
             
             const questionCardDiv = document.createElement('div');
-            questionCardDiv.classList.add('question-card-active'); // Nova classe para card ativo
+            questionCardDiv.classList.add('question-card-active');
 
             const questionText = document.createElement('p');
             questionText.innerHTML = `<span class="material-symbols-outlined question-icon">live_help</span> ${q.question}`;
@@ -243,7 +244,7 @@
             }
             questionCardDiv.appendChild(optionsDiv);
             quizArea.appendChild(questionCardDiv);
-            quizNavigationDiv.style.display = 'flex';
+            quizNavigationDiv.style.display = 'flex'; // Garante que os controles de navegação sejam exibidos
             updateNavigationButtons();
         }
 
@@ -257,6 +258,44 @@
                 submitButtonFinal.style.display = 'none';
             }
         }
+        
+        function showCustomAlert(message) {
+            // Verifica se já existe um alerta para não criar múltiplos
+            let alertOverlay = document.getElementById('custom-alert-overlay');
+            if (alertOverlay) {
+                alertOverlay.remove(); // Remove o anterior se existir
+            }
+
+            alertOverlay = document.createElement('div');
+            alertOverlay.id = 'custom-alert-overlay';
+            alertOverlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); display: flex; justify-content: center; align-items: center; z-index: 1000; font-family: "Press Start 2P"; padding: 20px; box-sizing: border-box;';
+            
+            const alertBox = document.createElement('div');
+            alertBox.style.cssText = 'background-color: #1e1e1e; color: #ffff00; padding: 30px; border: 3px solid #ff00ff; border-radius: 10px; text-align: center; box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff inset; max-width: 90%; animation: fadeInCard 0.3s ease-out;';
+            
+            const alertMessage = document.createElement('p');
+            alertMessage.textContent = message;
+            alertMessage.style.marginBottom = '25px';
+            alertMessage.style.fontSize = 'clamp(0.9em, 2.5vw, 1.1em)';
+            alertMessage.style.lineHeight = '1.6';
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'OK';
+            // Reutilizando a classe .quiz-nav-button para consistência, mas com cor específica
+            closeButton.className = 'quiz-nav-button'; // Adiciona a classe para herdar estilos base
+            closeButton.style.backgroundColor = '#00ff00'; // Cor de fundo verde
+            closeButton.style.borderColor = '#00ff00'; // Cor da borda verde
+            closeButton.style.color = '#1a1a1a'; // Cor do texto
+            closeButton.style.marginTop = '10px'; // Espaço acima do botão
+            closeButton.onclick = () => alertOverlay.remove();
+
+            alertBox.appendChild(alertMessage);
+            alertBox.appendChild(closeButton);
+            alertOverlay.appendChild(alertBox);
+            document.body.appendChild(alertOverlay);
+            closeButton.focus(); // Foca no botão OK
+        }
+
 
         prevButton.addEventListener('click', () => {
             if (currentQuestionIndex > 0) {
@@ -267,7 +306,6 @@
 
         nextButton.addEventListener('click', () => {
             if (userAnswers[currentQuestionIndex] === null) {
-                // Usando um modal customizado simples ao invés de alert()
                 showCustomAlert("Por favor, selecione uma resposta antes de prosseguir.");
                 return;
             }
@@ -277,37 +315,6 @@
             }
         });
         
-        function showCustomAlert(message) {
-            let alertOverlay = document.getElementById('custom-alert-overlay');
-            if (!alertOverlay) {
-                alertOverlay = document.createElement('div');
-                alertOverlay.id = 'custom-alert-overlay';
-                alertOverlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; font-family: "Press Start 2P";';
-                
-                const alertBox = document.createElement('div');
-                alertBox.style.cssText = 'background-color: #2b2b2b; color: #ffff00; padding: 30px; border: 3px solid #ff00ff; border-radius: 10px; text-align: center; box-shadow: 0 0 20px #ff00ff;';
-                
-                const alertMessage = document.createElement('p');
-                alertMessage.textContent = message;
-                alertMessage.style.marginBottom = '20px';
-                alertMessage.style.fontSize = '1em';
-
-                const closeButton = document.createElement('button');
-                closeButton.textContent = 'OK';
-                closeButton.style.cssText = 'background-color: #00ff00; color: #1a1a1a; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;';
-                closeButton.onclick = () => alertOverlay.remove();
-
-                alertBox.appendChild(alertMessage);
-                alertBox.appendChild(closeButton);
-                alertOverlay.appendChild(alertBox);
-                document.body.appendChild(alertOverlay);
-            } else {
-                alertOverlay.querySelector('p').textContent = message;
-                alertOverlay.style.display = 'flex';
-            }
-        }
-
-
         submitButtonFinal.addEventListener('click', () => {
             if (userAnswers[currentQuestionIndex] === null) {
                  showCustomAlert("Por favor, selecione uma resposta para a última pergunta.");
@@ -333,9 +340,8 @@
                 return;
             }
             
-            let maxCount = 0;
+            let maxCount = -1; // Inicia com -1 para garantir que qualquer contagem seja maior
             let resultKey = '';
-            // Prioridade em caso de empate: a, b, c, d (ou a primeira encontrada)
             const priority = ['a', 'b', 'c', 'd']; 
             for (const key of priority) {
                 if (answerCounts[key] > maxCount) {
@@ -343,17 +349,13 @@
                     resultKey = key;
                 }
             }
-            // Se ainda não houver resultKey (ex: todas as contagens são 0, improvável com respostas obrigatórias)
-            // ou se houver um empate e quisermos uma regra mais explícita, podemos adicionar aqui.
-            // Por ora, a primeira letra com a maior contagem (seguindo a prioridade) será usada.
-
-
+            
             const result = resultsMap[resultKey];
             if (result) {
                 profileNameEl.textContent = result.name;
                 profileDescriptionEl.textContent = result.description;
 
-                suggestedProjectsUl.innerHTML = ''; // Limpa projetos anteriores
+                suggestedProjectsUl.innerHTML = ''; 
                 result.projects.forEach(project => {
                     const li = document.createElement('li');
                     li.innerHTML = `<span class="material-symbols-outlined list-icon">arrow_right</span> ${project}`;
@@ -369,7 +371,6 @@
             }
         }
 
-        // Inicia o quiz renderizando o primeiro card
         renderQuestionCard(currentQuestionIndex);
     </script>
 </body>
