@@ -1,0 +1,456 @@
+/* style.css */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #121212; /* Fundo ainda mais escuro */
+    color: #00ff00; /* Cor neon principal (verde) */
+    margin: 0;
+    padding: 0;
+    line-height: 1.8; /* Aumenta um pouco o espaçamento entre linhas */
+    font-size: 16px; /* Base font size */
+}
+
+.container {
+    width: 95%; /* Layout mais largo */
+    max-width: 1400px; /* Aumenta o max-width para telas grandes */
+    margin: 20px auto;
+    padding: 25px; /* Mais padding interno */
+    background-color: #1e1e1e; /* Fundo escuro para seções, um pouco mais claro que o body */
+    border: 3px solid #00ff00; /* Borda mais grossa */
+    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00 inset, 0 0 10px rgba(0, 255, 0, 0.5); /* Sombra mais pronunciada e um brilho externo */
+    border-radius: 15px; /* Bordas mais arredondadas */
+}
+
+header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 4px dashed #ff00ff; /* Neon rosa, mais grossa */
+    margin-bottom: 40px;
+    background: linear-gradient(to bottom, #2a2a2a, #1e1e1e); /* Gradiente sutil no header */
+}
+
+header h1 {
+    font-size: clamp(1.8em, 5vw, 3em); /* Tamanho de fonte responsivo */
+    color: #ffff00; /* Neon amarelo */
+    text-shadow: 0 0 7px #ffff00, 0 0 12px #ffff00, 0 0 5px #fff; /* Sombra mais intensa e um brilho branco */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Espaço entre ícones e texto */
+}
+
+.icon-header {
+    font-size: 1.2em; /* Ícones um pouco maiores no header */
+    vertical-align: middle;
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 10px 0;
+    background-color: rgba(0, 255, 255, 0.05); /* Fundo sutil para a navegação */
+    border-radius: 8px;
+}
+
+nav a {
+    color: #00ffff; /* Neon ciano */
+    text-decoration: none;
+    margin: 0 10px; /* Reduzido para caber mais em telas menores */
+    font-size: clamp(0.9em, 2.5vw, 1.1em); /* Fonte responsiva para nav */
+    padding: 12px 18px;
+    border: 2px solid #00ffff;
+    border-radius: 8px; /* Bordas mais suaves */
+    transition: all 0.3s ease-in-out;
+    display: inline-flex; /* Para alinhar ícones */
+    align-items: center;
+    gap: 8px; /* Espaço entre ícone e texto no nav */
+}
+
+nav a:hover, nav a:focus {
+    background-color: #00ffff;
+    color: #1a1a1a;
+    box-shadow: 0 0 12px #00ffff, 0 0 18px #00ffff, 0 0 5px #fff; /* Sombra mais brilhante no hover */
+    transform: translateY(-2px) scale(1.05); /* Efeito de levantar e aumentar */
+}
+
+.nav-icon {
+    font-size: 1.3em; /* Tamanho dos ícones de navegação */
+}
+
+h2 {
+    color: #ff00ff; /* Neon rosa */
+    text-shadow: 0 0 6px #ff00ff, 0 0 3px #fff;
+    border-bottom: 3px solid #ff00ff;
+    padding-bottom: 15px;
+    margin-top: 40px;
+    margin-bottom: 25px; /* Mais espaço abaixo do h2 */
+    font-size: clamp(1.5em, 4vw, 2.2em); /* Fonte responsiva */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3 {
+    color: #00ffff; /* Neon ciano */
+    text-shadow: 0 0 4px #00ffff;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: clamp(1.2em, 3vw, 1.8em);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-icon, .subsection-icon, .tip-icon, .card-icon, .footer-icon, .question-icon, .result-icon, .projects-icon, .list-icon {
+    font-size: 1.1em; /* Tamanho padrão para ícones em texto */
+    vertical-align: text-bottom; /* Melhor alinhamento com texto */
+    margin-right: 5px;
+}
+
+.tip-icon { color: #ffff00; }
+.card-icon { color: #00ff00; }
+.question-icon { color: #ffff00; }
+.result-icon { color: #ffff00; }
+.projects-icon { color: #00ffff; }
+.list-icon { font-size: 0.9em; color: #00ff00; }
+
+
+p, li {
+    color: #e0e0e0;
+    font-size: clamp(0.85em, 2vw, 1em); /* Fonte responsiva para parágrafos */
+    margin-bottom: 12px;
+}
+
+ul, ol {
+    padding-left: 25px; /* Mais recuo para listas */
+}
+ul { list-style-type: none; } /* Remover marcadores padrão, usaremos ícones */
+ul li::before {
+    content: '▶'; /* Marcador personalizado */
+    color: #00ff00; /* Cor do marcador */
+    font-size: 0.8em;
+    margin-right: 10px;
+    display: inline-block;
+}
+ol li { margin-bottom: 8px; }
+
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid responsivo */
+    gap: 25px; /* Espaço entre cards */
+    margin-top: 20px;
+}
+
+.project-card {
+    background-color: #282828; /* Fundo do card um pouco mais claro */
+    border: 2px solid #00ff00; /* Borda neon verde */
+    padding: 20px;
+    margin-bottom: 0; /* Removido, pois o grid cuida do espaçamento */
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.3), 0 0 8px #00ff00 inset; /* Sombra mais suave e brilho interno */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 0 15px #00ff00 inset;
+}
+
+.project-card h4 {
+    color: #ffff00; /* Neon amarelo */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 1px dashed #ffff00;
+    padding-bottom: 8px;
+}
+.project-card p {
+    font-size: 0.9em;
+    display: flex; /* Para alinhar ícones dentro dos parágrafos do card */
+    align-items: flex-start; /* Alinha ícone no topo se o texto quebrar linha */
+    gap: 8px; /* Espaço entre ícone e texto */
+}
+.project-card p strong {
+    color: #00ffff; /* Ciano para os "labels" como Foco Matemático */
+    min-width: 150px; /* Para alinhar os textos abaixo dos labels */
+}
+
+
+.hero-action {
+    text-align: center;
+    margin: 30px 0;
+}
+.button-quiz {
+    display: inline-flex; /* Para alinhar ícones */
+    align-items: center;
+    gap: 10px;
+    background-color: #ff00ff;
+    color: #1a1a1a;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border: 3px solid #ff00ff; /* Borda mais grossa */
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-shadow: none;
+    box-shadow: 0 0 8px #ff00ff;
+}
+.button-quiz:hover {
+    background-color: #1a1a1a;
+    color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff, 0 0 5px #fff;
+    transform: scale(1.05);
+}
+.button-icon { font-size: 1.2em; }
+
+
+/* Estilos para o Jogo dos Quatro Cantos (página jogo.html) */
+.quiz-page-container .container { /* Para aplicar max-width específico para a página do quiz se necessário */
+    max-width: 900px; /* Um pouco mais estreito para focar no quiz */
+}
+
+.quiz-container-cards { /* Container principal do quiz */
+    background-color: #1e1e1e; /* Mesmo fundo das seções */
+    padding: 20px;
+    border-radius: 10px;
+    /* border: 2px solid #00ffff; */ /* Removido, pois o .container já tem borda */
+    /* box-shadow: 0 0 15px #00ffff, 0 0 25px #00ffff inset; */
+}
+.quiz-container-cards h2 {
+    text-align: center;
+}
+.quiz-instructions {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #00ffff; /* Ciano para instruções */
+    font-size: 0.95em;
+}
+
+/* Card de pergunta ativo */
+.question-card-active {
+    margin-bottom: 25px;
+    padding: 25px;
+    background-color: #282828;
+    border-radius: 10px;
+    border: 2px solid #ff00ff; /* Destaque neon rosa */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
+    animation: fadeInCard 0.5s ease-in-out;
+}
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-card-active p { /* Texto da pergunta */
+    color: #ffff00; /* Neon amarelo */
+    font-size: clamp(1em, 2.5vw, 1.2em);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options label {
+    display: block;
+    margin-bottom: 12px;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    font-size: clamp(0.85em, 2vw, 1em);
+}
+.options label:hover {
+    background-color: #444;
+    transform: translateX(5px);
+    box-shadow: 0 0 8px #00ff00;
+}
+.options input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #00ff00;
+    transform: scale(1.3);
+    vertical-align: middle;
+}
+.options input[type="radio"]:checked + span { /* Estilo para o texto da opção selecionada, se necessário */
+    color: #00ff00;
+}
+
+
+.quiz-navigation-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px dashed #00ffff;
+}
+
+.quiz-nav-button {
+    background-color: #00ffff;
+    color: #1a1a1a;
+    padding: 12px 25px;
+    font-size: clamp(0.9em, 2vw, 1.1em);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 8px #00ffff;
+}
+.quiz-nav-button:hover:not(:disabled) {
+    background-color: #1a1a1a;
+    color: #00ffff;
+    box-shadow: 0 0 15px #00ffff, 0 0 20px #00ffff;
+    transform: scale(1.05);
+}
+.quiz-nav-button:disabled {
+    background-color: #555;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+#submit-quiz-final {
+    background-color: #00ff00; /* Verde para o botão final */
+    box-shadow: 0 0 8px #00ff00;
+}
+#submit-quiz-final:hover {
+    background-color: #1a1a1a;
+    color: #00ff00;
+    box-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00;
+}
+
+
+#quiz-result {
+    margin-top: 40px;
+    padding: 30px; /* Mais padding */
+    background-color: #282828;
+    border-radius: 10px;
+    border: 3px solid #ffff00; /* Borda amarela mais grossa */
+    box-shadow: 0 0 15px #ffff00, 0 0 10px rgba(255,255,0,0.3) inset;
+    animation: fadeInCard 0.7s ease-in-out;
+}
+#quiz-result h3 {
+    color: #ffff00;
+    text-align: center;
+    font-size: clamp(1.4em, 3.5vw, 2em);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#quiz-result p {
+    color: #e0e0e0;
+    font-size: clamp(0.9em, 2.2vw, 1.1em);
+    margin-bottom: 15px;
+    text-align: center;
+}
+#quiz-result ul {
+    padding-left: 0; /* Remover padding padrão para centralizar itens */
+    list-style-type: none;
+}
+#quiz-result ul li {
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-left: 4px solid #00ff00;
+    font-size: clamp(0.85em, 2vw, 1em);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.result-profile {
+    color: #00ff00;
+    font-weight: normal; /* A fonte já é bold */
+}
+.result-projects-title {
+    color: #00ffff;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    font-size: clamp(1.1em, 2.8vw, 1.5em);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    border-top: 3px solid #00ff00;
+    color: #00ff00;
+    font-size: 0.9em;
+    background-color: #1e1e1e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.footer-icon { font-size: 1.2em; }
+
+
+/* Responsividade Adicional */
+@media (max-width: 768px) {
+    nav {
+        padding: 5px 0;
+    }
+    nav a {
+        margin: 5px; /* Mais margem para quebra de linha */
+        padding: 10px 12px;
+    }
+    .project-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        gap: 20px;
+    }
+    .quiz-navigation-controls {
+        flex-direction: column;
+        gap: 15px; /* Espaço entre botões quando em coluna */
+    }
+    .quiz-nav-button {
+        width: 80%; /* Botões ocupam mais largura */
+        justify-content: center; /* Centraliza texto e ícone */
+    }
+}
+
+@media (max-width: 480px) {
+    body { font-size: 14px; } /* Reduz a base da fonte para telas muito pequenas */
+    .container {
+        padding: 15px;
+        border-width: 2px;
+    }
+    header h1 {
+        gap: 10px;
+    }
+    nav {
+        display: flex;
+        flex-direction: column; /* Empilha links de navegação */
+        gap: 10px;
+    }
+    nav a {
+        width: 90%;
+        margin: 0 auto; /* Centraliza os links empilhados */
+        justify-content: center;
+    }
+    h2 { padding-bottom: 10px; margin-bottom: 20px; }
+    .project-card { padding: 15px; }
+    .button-quiz { padding: 12px 20px; width: 90%; justify-content: center;}
+
+    .quiz-container-cards { padding: 15px; }
+    .question-card-active { padding: 20px; }
+    .options label { padding: 12px; }
+    .quiz-nav-button { width: 100%; }
+    #quiz-result { padding: 20px; }
+    #quiz-result ul li { padding: 8px 12px; }
+}
+

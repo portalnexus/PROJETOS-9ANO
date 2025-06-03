@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo dos Quatro Cantos - Projetos de Matemática</title>
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap](https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap)" rel="stylesheet">
+    <link href="[https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined](https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined)" rel="stylesheet" />
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><span class="material-symbols-outlined icon-header">sports_esports</span> Jogo dos Quatro Cantos <span class="material-symbols-outlined icon-header">stadia_controller</span></h1>
+    </header>
+
+    <nav>
+        <a href="index.html"><span class="material-symbols-outlined nav-icon">arrow_back_ios</span> Voltar para Início</a>
+    </nav>
+
+    <div class="container quiz-page-container">
+        <div class="quiz-container-cards">
+            <h2><span class="material-symbols-outlined section-icon">psychology</span> Descubra seu Perfil de Projeto!</h2>
+            <p class="quiz-instructions">Responda às perguntas abaixo, uma de cada vez, para identificar qual área de projeto mais combina com você.</p>
+
+            <div id="quiz-area">
+                <!-- Os cards de perguntas serão inseridos aqui pelo JavaScript -->
+            </div>
+
+            <div id="quiz-navigation" class="quiz-navigation-controls" style="display: none;">
+                <button id="prev-question" class="quiz-nav-button">
+                    <span class="material-symbols-outlined button-icon">arrow_back</span> Voltar
+                </button>
+                <button id="next-question" class="quiz-nav-button">
+                    Próximo <span class="material-symbols-outlined button-icon">arrow_forward</span>
+                </button>
+                <button id="submit-quiz-final" class="quiz-nav-button" style="display: none;">
+                    <span class="material-symbols-outlined button-icon">check_circle</span> Ver Resultado
+                </button>
+            </div>
+
+            <div id="quiz-result" style="display: none;">
+                <h3><span class="material-symbols-outlined result-icon">military_tech</span> Seu Perfil é: <span id="profile-name" class="result-profile"></span></h3>
+                <p id="profile-description"></p>
+                <strong class="result-projects-title"><span class="material-symbols-outlined projects-icon">category</span> Projetos Sugeridos:</strong>
+                <ul id="suggested-projects">
+                    <!-- Projetos sugeridos aqui -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Projetos de Matemática Criativa. <span class="material-symbols-outlined footer-icon">gamepad</span> Fonte: Press Start 2P.</p>
+    </footer>
+
+    <script>
+        const quizData = [
+            {
+                question: "1. Qual área mais te atrai?",
+                options: {
+                    a: "Criar algo visualmente bonito e decorativo.",
+                    b: "Projetar e construir coisas que funcionam no mundo real.",
+                    c: "Explorar o mundo ao seu redor, a natureza e o céu.",
+                    d: "Resolver quebra-cabeças, analisar sistemas e entender como as coisas funcionam."
+                }
+            },
+            {
+                question: "2. Em qual atividade você se imagina mais engajado(a)?",
+                options: {
+                    a: "Desenhando, pintando ou usando softwares de design.",
+                    b: "Montando maquetes, protótipos ou estruturas físicas.",
+                    c: "Fazendo medições ao ar livre, observando o céu ou criando mapas.",
+                    d: "Analisando dados, encontrando padrões ou criando estratégias."
+                }
+            },
+            {
+                question: "3. Qual tipo de problema você prefere resolver?",
+                options: {
+                    a: "Como tornar algo mais belo ou expressivo?",
+                    b: "Como fazer algo funcionar melhor ou ser mais útil?",
+                    c: "Como entender fenômenos naturais ou se orientar no espaço?",
+                    d: "Como otimizar um sistema ou vencer um desafio lógico?"
+                }
+            },
+            {
+                question: "4. Com quais materiais você mais gostaria de trabalhar?",
+                options: {
+                    a: "Papel, tintas, softwares de design gráfico, materiais reciclados para arte.",
+                    b: "Madeira, papelão, macarrão (para estruturas!), ferramentas de medição.",
+                    c: "Bússolas, transferidores, materiais para construir relógios de sol ou instrumentos de observação.",
+                    d: "Seu raciocínio, talvez alguns softwares de simulação ou análise."
+                }
+            },
+            {
+                question: "5. Qual tema interdisciplinar te parece mais interessante?",
+                options: {
+                    a: "Artes, História da Arte, Cultura.",
+                    b: "Engenharia, Arquitetura, Física (aplicada a construções).",
+                    c: "Geografia, Astronomia, História (grandes navegações, instrumentos antigos).",
+                    d: "Música, Esportes, Design de Jogos, Lógica."
+                }
+            },
+            {
+                question: "6. Você se considera uma pessoa mais…",
+                options: {
+                    a: "Artística e criativa.",
+                    b: "Prática e construtora.",
+                    c: "Curiosa e exploradora.",
+                    d: "Analítica e estratégica."
+                }
+            },
+            {
+                question: "7. Qual dos seguintes 'produtos finais' de um projeto te daria mais satisfação?",
+                options: {
+                    a: "Uma obra de arte (mosaico, mandala, vitral, desenho em perspectiva).",
+                    b: "Uma estrutura funcional (maquete de casa, rampa, ponte, roda gigante).",
+                    c: "Um instrumento de medição ou um mapa (relógio de sol, quadrante, mapa do bairro).",
+                    d: "Uma análise detalhada, um jogo ou a solução de um problema complexo (análise esportiva, labirinto, projeto de instrumento musical)."
+                }
+            },
+            {
+                question: "8. Quando você pensa em matemática, o que te desperta mais interesse?",
+                options: {
+                    a: "A beleza das formas geométricas e padrões.",
+                    b: "A aplicação da matemática para resolver problemas práticos de construção e medição.",
+                    c: "O uso da matemática para entender o universo e a natureza.",
+                    d: "A lógica e a precisão dos cálculos e das relações matemáticas."
+                }
+            },
+            {
+                question: "9. Você prefere um projeto que envolva mais…",
+                options: {
+                    a: "Expressão individual e interpretação artística.",
+                    b: "Trabalho em equipe para construir algo concreto e testável.",
+                    c: "Pesquisa e descoberta sobre o mundo natural ou o céu.",
+                    d: "Raciocínio lógico, estratégia e análise de sistemas."
+                }
+            },
+            {
+                question: "10. Escolha a frase que melhor te descreve em um projeto em grupo:",
+                options: {
+                    a: "Eu gosto de cuidar da parte visual e da apresentação.",
+                    b: "Eu gosto de colocar a mão na massa e ver as coisas tomando forma.",
+                    c: "Eu gosto de pesquisar, entender o contexto e explorar novas ideias.",
+                    d: "Eu gosto de analisar os problemas, encontrar soluções eficientes e organizar o trabalho."
+                }
+            }
+        ];
+
+        const resultsMap = {
+            a: {
+                name: "Arte & Design",
+                description: "Seu perfil combina com projetos que envolvem Arte & Design. Você tem um olhar para a estética, criatividade e expressão visual. Gosta de trabalhar com formas, cores e composições para criar algo belo e significativo.",
+                projects: [
+                    "A Arte Simétrica: Criando Mosaicos e Padrões Geométricos",
+                    "Mandalas Cósmicas: A Geometria da Harmonia",
+                    "Design de Vitrais: Luz, Cor e Geometria Sagrada",
+                    "A Proporção Áurea na Natureza e na Arte",
+                    "Perspectiva Artística: Desenhando o Mundo Tridimensional no Papel",
+                    "Caleidoscópios Mágicos: Simetria, Ângulos e Reflexões Infinitas"
+                ]
+            },
+            b: {
+                name: "Construção & Engenharia",
+                description: "Seu perfil combina com projetos que envolvem Construção & Engenharia. Você é uma pessoa prática, que gosta de projetar, montar e ver as coisas funcionando no mundo real. A aplicação da matemática para resolver problemas concretos te atrai.",
+                projects: [
+                    "O Desafio da Altura: Medindo o Inacessível com Tales e Trigonometria",
+                    "Mini-Arquitetos: Projetando Espaços com Escalas e Proporções",
+                    "Rampas para Todos: Acessibilidade, Pitágoras e Inclinação",
+                    "Pontes de Macarrão: Estruturas, Forças e o Teorema de Pitágoras",
+                    "A Roda Gigante: Geometria, Ângulos e Movimento Circular",
+                    "Cidades Sustentáveis do Futuro: Geometria no Planejamento Urbano Verde"
+                ]
+            },
+            c: {
+                name: "Natureza & Exploração",
+                description: "Seu perfil combina com projetos que envolvem Natureza & Exploração. Você é curioso(a) sobre o mundo ao seu redor, desde fenômenos naturais até a imensidão do céu. Gosta de investigar, medir e entender como a matemática descreve o universo.",
+                projects: [
+                    "A Geometria Solar: Construindo e Calibrando um Relógio de Sol",
+                    "Navegadores Celestes: Orientação por Ângulos e Estrelas",
+                    "Cartografia Criativa: Mapeando o Entorno com Precisão Geométrica"
+                ]
+            },
+            d: {
+                name: "Lógica & Análise",
+                description: "Seu perfil combina com projetos que envolvem Lógica & Análise. Você gosta de resolver quebra-cabeças, analisar sistemas, encontrar padrões e otimizar processos. A precisão dos cálculos e o poder do raciocínio lógico te fascinam.",
+                projects: [
+                    "Labirintos Desafiadores: Lógica, Ângulos e Caminhos Otimizados",
+                    "Instrumentos Musicais: A Matemática por Trás das Notas e Harmonias",
+                    "Geometria dos Esportes: Ângulos, Trajetórias e Desempenho"
+                ]
+            }
+        };
+
+        const quizArea = document.getElementById('quiz-area');
+        const prevButton = document.getElementById('prev-question');
+        const nextButton = document.getElementById('next-question');
+        const submitButtonFinal = document.getElementById('submit-quiz-final');
+        const resultDiv = document.getElementById('quiz-result');
+        const profileNameEl = document.getElementById('profile-name');
+        const profileDescriptionEl = document.getElementById('profile-description');
+        const suggestedProjectsUl = document.getElementById('suggested-projects');
+        const quizNavigationDiv = document.getElementById('quiz-navigation');
+
+        let currentQuestionIndex = 0;
+        const userAnswers = new Array(quizData.length).fill(null);
+
+        function renderQuestionCard(index) {
+            quizArea.innerHTML = ''; // Limpa a área para o novo card
+            const q = quizData[index];
+            
+            const questionCardDiv = document.createElement('div');
+            questionCardDiv.classList.add('question-card-active'); // Nova classe para card ativo
+
+            const questionText = document.createElement('p');
+            questionText.innerHTML = `<span class="material-symbols-outlined question-icon">live_help</span> ${q.question}`;
+            questionCardDiv.appendChild(questionText);
+
+            const optionsDiv = document.createElement('div');
+            optionsDiv.classList.add('options');
+
+            for (const key in q.options) {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question${index}`;
+                radio.value = key;
+                
+                if (userAnswers[index] === key) {
+                    radio.checked = true;
+                }
+
+                radio.addEventListener('change', () => {
+                    userAnswers[index] = radio.value;
+                });
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(q.options[key]));
+                optionsDiv.appendChild(label);
+            }
+            questionCardDiv.appendChild(optionsDiv);
+            quizArea.appendChild(questionCardDiv);
+            quizNavigationDiv.style.display = 'flex';
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            prevButton.disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextButton.style.display = 'none';
+                submitButtonFinal.style.display = 'inline-flex';
+            } else {
+                nextButton.style.display = 'inline-flex';
+                submitButtonFinal.style.display = 'none';
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestionCard(currentQuestionIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (userAnswers[currentQuestionIndex] === null) {
+                // Usando um modal customizado simples ao invés de alert()
+                showCustomAlert("Por favor, selecione uma resposta antes de prosseguir.");
+                return;
+            }
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestionCard(currentQuestionIndex);
+            }
+        });
+        
+        function showCustomAlert(message) {
+            let alertOverlay = document.getElementById('custom-alert-overlay');
+            if (!alertOverlay) {
+                alertOverlay = document.createElement('div');
+                alertOverlay.id = 'custom-alert-overlay';
+                alertOverlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; font-family: "Press Start 2P";';
+                
+                const alertBox = document.createElement('div');
+                alertBox.style.cssText = 'background-color: #2b2b2b; color: #ffff00; padding: 30px; border: 3px solid #ff00ff; border-radius: 10px; text-align: center; box-shadow: 0 0 20px #ff00ff;';
+                
+                const alertMessage = document.createElement('p');
+                alertMessage.textContent = message;
+                alertMessage.style.marginBottom = '20px';
+                alertMessage.style.fontSize = '1em';
+
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'OK';
+                closeButton.style.cssText = 'background-color: #00ff00; color: #1a1a1a; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;';
+                closeButton.onclick = () => alertOverlay.remove();
+
+                alertBox.appendChild(alertMessage);
+                alertBox.appendChild(closeButton);
+                alertOverlay.appendChild(alertBox);
+                document.body.appendChild(alertOverlay);
+            } else {
+                alertOverlay.querySelector('p').textContent = message;
+                alertOverlay.style.display = 'flex';
+            }
+        }
+
+
+        submitButtonFinal.addEventListener('click', () => {
+            if (userAnswers[currentQuestionIndex] === null) {
+                 showCustomAlert("Por favor, selecione uma resposta para a última pergunta.");
+                return;
+            }
+            calculateAndDisplayResults();
+        });
+
+        function calculateAndDisplayResults() {
+            const answerCounts = { a: 0, b: 0, c: 0, d: 0 };
+            let allAnswered = true;
+
+            for (const answer of userAnswers) {
+                if (answer === null) {
+                    allAnswered = false;
+                    break;
+                }
+                answerCounts[answer]++;
+            }
+
+            if (!allAnswered) {
+                showCustomAlert("Parece que nem todas as perguntas foram respondidas. Por favor, volte e complete o quiz.");
+                return;
+            }
+            
+            let maxCount = 0;
+            let resultKey = '';
+            // Prioridade em caso de empate: a, b, c, d (ou a primeira encontrada)
+            const priority = ['a', 'b', 'c', 'd']; 
+            for (const key of priority) {
+                if (answerCounts[key] > maxCount) {
+                    maxCount = answerCounts[key];
+                    resultKey = key;
+                }
+            }
+            // Se ainda não houver resultKey (ex: todas as contagens são 0, improvável com respostas obrigatórias)
+            // ou se houver um empate e quisermos uma regra mais explícita, podemos adicionar aqui.
+            // Por ora, a primeira letra com a maior contagem (seguindo a prioridade) será usada.
+
+
+            const result = resultsMap[resultKey];
+            if (result) {
+                profileNameEl.textContent = result.name;
+                profileDescriptionEl.textContent = result.description;
+
+                suggestedProjectsUl.innerHTML = ''; // Limpa projetos anteriores
+                result.projects.forEach(project => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="material-symbols-outlined list-icon">arrow_right</span> ${project}`;
+                    suggestedProjectsUl.appendChild(li);
+                });
+
+                quizArea.style.display = 'none';
+                quizNavigationDiv.style.display = 'none';
+                resultDiv.style.display = 'block';
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                 showCustomAlert("Não foi possível determinar seu perfil. Tente novamente.");
+            }
+        }
+
+        // Inicia o quiz renderizando o primeiro card
+        renderQuestionCard(currentQuestionIndex);
+    </script>
+</body>
+</html>
