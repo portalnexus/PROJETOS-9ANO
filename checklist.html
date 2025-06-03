@@ -23,25 +23,29 @@
     <div class="container page-content-container">
         <section id="checklist-detalhado">
             <h2><span class="material-symbols-outlined section-icon">checklist</span> Checklist - Estudos em Prática (9° ano)</h2>
-            <p class="intro-text">Este checklist vai ajudar sua equipe a não esquecer de nenhum passo importante do projeto! Marquem um ✔️ (clicando no item) ao lado de cada tarefa concluída.</p>
+            <p class="intro-text">Este checklist vai ajudar sua equipe a não esquecer de nenhum passo importante do projeto! Clique nos itens para marcar/desmarcar e use o botão "Salvar" para guardar seu progresso.</p>
             
-            <p class="team-name-field"><strong>Nome da Equipe:</strong> <input type="text" placeholder="Digite o nome da sua equipe aqui..." class="input-team-name"></p>
+            <div class="team-name-container">
+                <p class="team-name-field"><strong>Nome da Equipe:</strong> 
+                    <input type="text" id="teamNameInput" placeholder="Digite o nome da sua equipe aqui..." class="input-team-name">
+                </p>
+            </div>
 
             <div class="step-card">
                 <h3><span class="material-symbols-outlined subsection-icon">flag</span> Etapa 1: Formar a Equipe e Escolher o Desafio</h3>
                 <ul class="checklist-list">
-                    <li>Montar a Equipe:
+                    <li data-id="etapa1-membros">Montar a Equipe:
                         <ul>
-                            <li>Definimos os 4 membros da equipe.</li>
-                            <li>Escolhemos um nome criativo para a equipe.</li>
-                            <li>Criamos um símbolo (emblema) para a Equipe.</li>
+                            <li data-id="etapa1-membros-definidos">Definimos os 4 membros da equipe.</li>
+                            <li data-id="etapa1-nome-criativo">Escolhemos um nome criativo para a equipe.</li>
+                            <li data-id="etapa1-simbolo">Criamos um símbolo (emblema) para a Equipe.</li>
                         </ul>
                     </li>
-                    <li>Escolher o problema ou pergunta do Projeto:
+                    <li data-id="etapa1-escolher-problema">Escolher o problema ou pergunta do Projeto:
                         <ul>
-                            <li>Analisamos o "Caderno de Ideias".</li>
-                            <li>Conversamos sobre qual desafio é mais interessante para a equipe.</li>
-                            <li>Definimos e escrevemos claramente o Problema/Pergunta da nossa Equipe.</li>
+                            <li data-id="etapa1-analise-ideias">Analisamos o "Caderno de Ideias".</li>
+                            <li data-id="etapa1-conversa-desafio">Conversamos sobre qual desafio é mais interessante para a equipe.</li>
+                            <li data-id="etapa1-definir-problema">Definimos e escrevemos claramente o Problema/Pergunta da nossa Equipe.</li>
                         </ul>
                     </li>
                 </ul>
@@ -50,21 +54,21 @@
             <div class="step-card">
                 <h3><span class="material-symbols-outlined subsection-icon">edit_note</span> Etapa 2: Planejar como Fazer</h3>
                 <ul class="checklist-list">
-                    <li>Pensar na estratégia:
+                    <li data-id="etapa2-estrategia">Pensar na estratégia:
                         <ul>
-                            <li>Consultamos o "Elemento Maker" e a "Descrição" do projeto no Caderno de Ideias.</li>
-                            <li>Listamos os materiais, ferramentas e ideias de matemática que vamos precisar.</li>
-                            <li>Conversamos se o nosso plano é possível de fazer com o tempo e os materiais que temos.</li>
+                            <li data-id="etapa2-consultar-maker">Consultamos o "Elemento Maker" e a "Descrição" do projeto no Caderno de Ideias.</li>
+                            <li data-id="etapa2-listar-materiais">Listamos os materiais, ferramentas e ideias de matemática que vamos precisar.</li>
+                            <li data-id="etapa2-conversar-plano">Conversamos se o nosso plano é possível de fazer com o tempo e os materiais que temos.</li>
                         </ul>
                     </li>
-                    <li>Detalhamos e escrevemos o Plano da nossa Equipe.</li>
-                    <li>Definir os passos principais do Projeto:
+                    <li data-id="etapa2-detalhar-plano">Detalhamos e escrevemos o Plano da nossa Equipe.</li>
+                    <li data-id="etapa2-definir-passos">Definir os passos principais do Projeto:
                         <ul>
-                            <li>Escrevemos o que faremos na Etapa 1: "Pesquisar e aprender mais sobre o tema".</li>
-                            <li>Escrevemos o que faremos na Etapa 2: "Desenhar e criar os primeiros Modelos/Rascunhos".</li>
-                            <li>Escrevemos o que faremos na Etapa 3: "Colocar a mão na Massa (Construir/Criar de Verdade!)".</li>
-                            <li>Escrevemos o que faremos na Etapa 4: "Testar e melhorar (se precisar)".</li>
-                            <li>Escrevemos o que faremos na Etapa 5: "Organizar tudo para apresentar".</li>
+                            <li data-id="etapa2-passo1">Escrevemos o que faremos na Etapa 1: "Pesquisar e aprender mais sobre o tema".</li>
+                            <li data-id="etapa2-passo2">Escrevemos o que faremos na Etapa 2: "Desenhar e criar os primeiros Modelos/Rascunhos".</li>
+                            <li data-id="etapa2-passo3">Escrevemos o que faremos na Etapa 3: "Colocar a mão na Massa (Construir/Criar de Verdade!)".</li>
+                            <li data-id="etapa2-passo4">Escrevemos o que faremos na Etapa 4: "Testar e melhorar (se precisar)".</li>
+                            <li data-id="etapa2-passo5">Escrevemos o que faremos na Etapa 5: "Organizar tudo para apresentar".</li>
                         </ul>
                     </li>
                 </ul>
@@ -73,37 +77,37 @@
             <div class="step-card">
                 <h3><span class="material-symbols-outlined subsection-icon">handshake</span> Etapa 3: Organizar o trabalho em Equipe</h3>
                 <ul class="checklist-list">
-                    <li>Combinar como cada um vai ajudar:
+                    <li data-id="etapa3-combinar-ajuda">Combinar como cada um vai ajudar:
                         <ul>
-                            <li>Cada membro pensou sobre o que quer aprender e como pode ajudar.</li>
-                            <li>Conversamos e definimos como vamos nos comunicar e tomar decisões.</li>
-                            <li>Definimos como vamos dividir as tarefas para que todos participem.</li>
+                            <li data-id="etapa3-pensar-individual">Cada membro pensou sobre o que quer aprender e como pode ajudar.</li>
+                            <li data-id="etapa3-definir-comunicacao">Conversamos e definimos como vamos nos comunicar e tomar decisões.</li>
+                            <li data-id="etapa3-dividir-tarefas">Definimos como vamos dividir as tarefas para que todos participem.</li>
                         </ul>
                     </li>
-                    <li>Escrevemos O que esperamos aprender e fazer como Equipe.</li>
-                    <li>Escrevemos os Nossos combinados (Regras do Grupo).</li>
+                    <li data-id="etapa3-escrever-aprender">Escrevemos O que esperamos aprender e fazer como Equipe.</li>
+                    <li data-id="etapa3-escrever-combinados">Escrevemos os Nossos combinados (Regras do Grupo).</li>
                 </ul>
             </div>
 
             <div class="step-card">
                 <h3><span class="material-symbols-outlined subsection-icon">workspace_premium</span> Etapa 4: O resultado final e a apresentação</h3>
                 <ul class="checklist-list">
-                    <li>Definir o Produto Final do Projeto:
+                    <li data-id="etapa4-definir-produto">Definir o Produto Final do Projeto:
                         <ul>
-                            <li>Vimos os exemplos de "Elemento Maker" no Caderno de Ideias.</li>
-                            <li>Decidimos em grupo qual será o produto final da equipe.</li>
-                            <li>Escrevemos qual será o Nosso Produto Final.</li>
-                            <li>Escrevemos Como nosso Produto Final mostra o que descobrimos e o que aprendemos com a matemática.</li>
+                            <li data-id="etapa4-ver-exemplos">Vimos os exemplos de "Elemento Maker" no Caderno de Ideias.</li>
+                            <li data-id="etapa4-decidir-produto">Decidimos em grupo qual será o produto final da equipe.</li>
+                            <li data-id="etapa4-escrever-produto">Escrevemos qual será o Nosso Produto Final.</li>
+                            <li data-id="etapa4-escrever-aprendizado">Escrevemos Como nosso Produto Final mostra o que descobrimos e o que aprendemos com a matemática.</li>
                         </ul>
                     </li>
-                    <li>Acompanhar o Cronograma:
+                    <li data-id="etapa4-acompanhar-cronograma">Acompanhar o Cronograma:
                         <ul>
-                            <li>Semana 1: Equipe formada, nome, símbolo e problema definidos.</li>
-                            <li>Semana 2: Pesquisa feita e ideias para o projeto.</li>
-                            <li>Semana 3: Plano detalhado e tarefas divididas.</li>
-                            <li>Semana 4: Mão na massa (desenho, construção, criação, testes).</li>
-                            <li>Semana 5: Produto finalizado e apresentação preparada.</li>
-                            <li>Semana 6: Projeto apresentado! <span class="material-symbols-outlined">celebration</span></li>
+                            <li data-id="etapa4-semana1">Semana 1: Equipe formada, nome, símbolo e problema definidos.</li>
+                            <li data-id="etapa4-semana2">Semana 2: Pesquisa feita e ideias para o projeto.</li>
+                            <li data-id="etapa4-semana3">Semana 3: Plano detalhado e tarefas divididas.</li>
+                            <li data-id="etapa4-semana4">Semana 4: Mão na massa (desenho, construção, criação, testes).</li>
+                            <li data-id="etapa4-semana5">Semana 5: Produto finalizado e apresentação preparada.</li>
+                            <li data-id="etapa4-semana6">Semana 6: Projeto apresentado! <span class="material-symbols-outlined">celebration</span></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,14 +117,20 @@
                 <h4><span class="material-symbols-outlined subsection-icon">notification_important</span> Lembretes Importantes!</h4>
                 <p>(Marque se a equipe está atenta a isso):</p>
                 <ul class="checklist-list">
-                    <li>Estamos usando a matemática de verdade no projeto?</li>
-                    <li>Estamos trabalhando bem juntos e ajudando uns aos outros?</li>
-                    <li>Estamos experimentando e aprendendo com os erros?</li>
-                    <li>Estamos nos comunicando bem dentro da equipe?</li>
-                    <li>Estamos sendo honestos e dando crédito quando usamos ideias de outros lugares?</li>
-                    <li>Estamos curiosos e não desistimos fácil?</li>
+                    <li data-id="lembrete-matematica">Estamos usando a matemática de verdade no projeto?</li>
+                    <li data-id="lembrete-trabalho-equipe">Estamos trabalhando bem juntos e ajudando uns aos outros?</li>
+                    <li data-id="lembrete-aprender-erros">Estamos experimentando e aprendendo com os erros?</li>
+                    <li data-id="lembrete-comunicacao">Estamos nos comunicando bem dentro da equipe?</li>
+                    <li data-id="lembrete-honestidade">Estamos sendo honestos e dando crédito quando usamos ideias de outros lugares?</li>
+                    <li data-id="lembrete-curiosidade">Estamos curiosos e não desistimos fácil?</li>
                 </ul>
             </div>
+            <div style="text-align: center;">
+                <button id="saveChecklistButton" class="button-save">
+                    <span class="material-symbols-outlined save-icon">save</span> Salvar Progresso
+                </button>
+            </div>
+            <p id="saveStatus" style="text-align:center; margin-top:15px; color: var(--color-green); font-size: var(--font-size-sm);"></p>
             <p class="final-encouragement">Parabéns pela organização! Com este checklist, sua equipe está no caminho certo para um ótimo projeto!</p>
         </section>
     </div>
@@ -130,41 +140,102 @@
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+        const checklistAppId = 'projetosMatematicaChecklist'; // Unique ID for localStorage
+
+        const teamNameInput = document.getElementById('teamNameInput');
+        const saveButton = document.getElementById('saveChecklistButton');
+        const saveStatusEl = document.getElementById('saveStatus');
         const checklistItems = document.querySelectorAll('#checklist-detalhado .checklist-list > li, #checklist-detalhado .checklist-list > li ul > li');
+
+        // Function to apply styles based on checked state
+        function applyCheckedStyle(item, isChecked) {
+            const currentMarker = window.getComputedStyle(item, '::before').content;
+            let newMarkerContent;
+
+            if (isChecked) {
+                if (currentMarker.includes('☐')) newMarkerContent = '"☑ "';
+                else if (currentMarker.includes('▫')) newMarkerContent = '"▪ "';
+                else if (currentMarker.includes('▹')) newMarkerContent = '"▸ "';
+                item.classList.add('checked');
+            } else {
+                if (currentMarker.includes('☑')) newMarkerContent = '"☐ "';
+                else if (currentMarker.includes('▪')) newMarkerContent = '"▫ "';
+                else if (currentMarker.includes('▸')) newMarkerContent = '"▹ "';
+                item.classList.remove('checked');
+            }
+            if (newMarkerContent) {
+                item.style.setProperty('--marker-content', newMarkerContent);
+            }
+        }
+
+
         checklistItems.forEach(item => {
             item.style.cursor = 'pointer';
+            // Set initial marker from CSS for all items
             const initialMarkerContent = window.getComputedStyle(item, '::before').content;
             item.style.setProperty('--marker-content', initialMarkerContent);
-
+            
             item.addEventListener('click', function(e) {
+                // Prevent click on parent if a sub-item's text is clicked directly
                 if (e.target === this || (e.target.parentNode === this && e.target.nodeName !== 'UL')) {
-                    const currentMarker = this.style.getPropertyValue('--marker-content');
-                    let newMarker;
-                    if (currentMarker.includes('☐')) { 
-                        newMarker = '"☑ "'; 
-                        this.classList.add('checked');
-                    } else if (currentMarker.includes('☑')) { 
-                        newMarker = '"☐ "'; 
-                        this.classList.remove('checked');
-                    } else if (currentMarker.includes('▫')) { 
-                        newMarker = '"▪ "'; 
-                        this.classList.add('checked');
-                    } else if (currentMarker.includes('▪')) { 
-                        newMarker = '"▫ "'; 
-                        this.classList.remove('checked');
-                    } else if (currentMarker.includes('▹')) { 
-                        newMarker = '"▸ "'; 
-                         this.classList.add('checked');
-                    } else if (currentMarker.includes('▸')) { 
-                        newMarker = '"▹ "'; 
-                        this.classList.remove('checked');
-                    }
-                    if (newMarker) {
-                        this.style.setProperty('--marker-content', newMarker);
-                    }
+                    this.classList.toggle('checked-temp'); // Temporary class to track current click state
+                    applyCheckedStyle(this, this.classList.contains('checked-temp'));
+                    this.classList.remove('checked-temp'); // Clean up temporary class
                 }
             });
         });
+
+        function saveChecklistState() {
+            const checklistData = {
+                teamName: teamNameInput.value,
+                items: {}
+            };
+            checklistItems.forEach(item => {
+                const itemId = item.dataset.id;
+                if (itemId) { // Only save items with a data-id
+                    checklistData.items[itemId] = item.classList.contains('checked');
+                }
+            });
+            localStorage.setItem(checklistAppId, JSON.stringify(checklistData));
+            saveStatusEl.textContent = "Progresso salvo com sucesso!";
+            setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
+        }
+
+        function loadChecklistState() {
+            const savedData = localStorage.getItem(checklistAppId);
+            if (savedData) {
+                try {
+                    const checklistData = JSON.parse(savedData);
+                    if (checklistData.teamName) {
+                        teamNameInput.value = checklistData.teamName;
+                    }
+                    if (checklistData.items) {
+                        checklistItems.forEach(item => {
+                            const itemId = item.dataset.id;
+                            if (itemId && checklistData.items[itemId] !== undefined) {
+                                const isChecked = checklistData.items[itemId];
+                                if (isChecked) {
+                                    item.classList.add('checked'); // Add class before applying style
+                                } else {
+                                    item.classList.remove('checked');
+                                }
+                                applyCheckedStyle(item, isChecked);
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.error("Erro ao carregar dados do checklist:", e);
+                    saveStatusEl.textContent = "Erro ao carregar dados salvos.";
+                }
+            }
+        }
+
+        if (saveButton) {
+            saveButton.addEventListener('click', saveChecklistState);
+        }
+
+        // Load saved state when the page loads
+        loadChecklistState();
     </script>
 </body>
 </html>
