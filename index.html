@@ -35,7 +35,7 @@
 
         <section id="ideias">
             <h2><span class="material-symbols-outlined section-icon">emoji_objects</span> Ideias de Projetos <span class="material-symbols-outlined carousel-icon">slideshow</span></h2>
-            <p class="intro-text">Navegue pelas 18 ideias de projetos que integram construções geométricas, ângulos, Teorema de Tales, proporcionalidade, Teorema de Pitágoras e razões trigonométricas. Use as setas ou os pontos para explorar!</p>
+            <p class="intro-text">Navegue pelas 18 ideias de projetos. Cada projeto integra construções geométricas, ângulos, Teorema de Tales, proporcionalidade, Teorema de Pitágoras e razões trigonométricas. Use as setas ou os pontos para explorar!</p>
 
             <div class="carousel-container">
                 <button class="carousel-button prev" id="carouselPrev" aria-label="Projeto Anterior">
@@ -187,7 +187,6 @@
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        // Script para navegação suave de âncoras internas (opcional, mas bom para UX)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -201,7 +200,6 @@
             });
         });
         
-        // Script do Carrossel
         document.addEventListener('DOMContentLoaded', () => {
             const slider = document.getElementById('carouselSlider');
             const prevButton = document.getElementById('carouselPrev');
@@ -211,31 +209,34 @@
             if (!slider) return;
 
             const items = Array.from(slider.children).filter(child => child.classList.contains('carousel-item'));
-            
-            if (!items.length) return;
-
-            let itemsPerViewInitial = calculateItemsPerView();
-            let totalItems = items.length;
-            let itemWidth = getItemWidth(); // Largura do item + gap
-            let currentSlideIndex = 0; // Índice do primeiro item do view atual
-
-            function getItemWidth() {
-                if (!items[0]) return 0;
-                return items[0].offsetWidth + parseInt(getComputedStyle(slider).gap || 0);
+            if (!items.length) {
+                if(prevButton) prevButton.style.display = 'none';
+                if(nextButton) nextButton.style.display = 'none';
+                if(dotsContainer) dotsContainer.style.display = 'none';
+                return;
             }
 
-            function calculateItemsPerView() {
+            const itemsPerView = 1; // Sempre 1 item por vez
+            const totalItems = items.length;
+            let itemWidth = items[0].offsetWidth; // Largura do item
+            let currentItemIndex = 0; 
+
+            function updateItemWidth() {
+                // Como cada item ocupa 100% do wrapper, a largura do item é a largura do wrapper.
+                // O CSS já define .carousel-item com min-width/max-width/flex: 100%
+                // Então, o itemWidth para cálculo de transform será a largura do wrapper.
                 const wrapper = document.querySelector('.carousel-slider-wrapper');
-                if (!wrapper || !items[0]) return 1;
-                const wrapperWidth = wrapper.offsetWidth;
-                const singleItemWidth = getItemWidth();
-                return Math.max(1, Math.floor(wrapperWidth / singleItemWidth));
+                if(wrapper) {
+                    itemWidth = wrapper.offsetWidth;
+                } else if (items[0]) {
+                    itemWidth = items[0].offsetWidth; // Fallback
+                }
             }
             
             function createDots() {
                 dotsContainer.innerHTML = '';
-                const numDots = Math.ceil(totalItems / itemsPerViewInitial);
-                if (numDots <= 1) { // Não mostrar dots se tudo couber em uma view
+                const numDots = totalItems; // Um dot por item
+                if (numDots <= 1) {
                     dotsContainer.style.display = 'none';
                     return;
                 }
@@ -245,9 +246,7 @@
                     const dot = document.createElement('span');
                     dot.classList.add('carousel-dot');
                     dot.addEventListener('click', () => {
-                        currentSlideIndex = i * itemsPerViewInitial;
-                        currentSlideIndex = Math.min(currentSlideIndex, totalItems - itemsPerViewInitial);
-                         if (currentSlideIndex < 0 && totalItems > 0) currentSlideIndex = 0;
+                        currentItemIndex = i;
                         updateCarousel();
                     });
                     dotsContainer.appendChild(dot);
@@ -258,79 +257,52 @@
             function updateDotsStatus() {
                 const allDots = dotsContainer.querySelectorAll('.carousel-dot');
                 if(!allDots.length) return;
-                const activeDotIndex = Math.floor(currentSlideIndex / itemsPerViewInitial);
                 allDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === activeDotIndex);
+                    dot.classList.toggle('active', index === currentItemIndex);
                 });
             }
 
             function updateCarouselControls() {
-                 prevButton.disabled = currentSlideIndex === 0;
-                 // Se o final do slider (currentSlideIndex * itemWidth + itemsPerView * itemWidth)
-                 // for maior ou igual ao scrollWidth total do slider, então estamos no fim.
-                 // Ou mais simples: se o índice do próximo slide a ser mostrado (currentSlideIndex + itemsPerViewInitial)
-                 // for maior ou igual ao total de itens.
-                 nextButton.disabled = currentSlideIndex >= totalItems - itemsPerViewInitial;
+                 prevButton.disabled = currentItemIndex === 0;
+                 nextButton.disabled = currentItemIndex >= totalItems - 1; // -1 porque é 1 item por vez
             }
 
             function updateCarousel() {
-                itemWidth = getItemWidth(); // Recalcula se a largura do item mudou
-                const newTransformValue = -currentSlideIndex * itemWidth;
+                updateItemWidth(); // Atualiza a largura caso a janela tenha sido redimensionada
+                const newTransformValue = -currentItemIndex * itemWidth;
                 slider.style.transform = `translateX(${newTransformValue}px)`;
                 updateCarouselControls();
                 updateDotsStatus();
             }
 
             prevButton.addEventListener('click', () => {
-                currentSlideIndex -= itemsPerViewInitial;
-                if (currentSlideIndex < 0) currentSlideIndex = 0;
-                updateCarousel();
+                if (currentItemIndex > 0) {
+                    currentItemIndex--;
+                    updateCarousel();
+                }
             });
 
             nextButton.addEventListener('click', () => {
-                currentSlideIndex += itemsPerViewInitial;
-                 // Garante que não ultrapasse o limite
-                if (currentSlideIndex > totalItems - itemsPerViewInitial) {
-                    currentSlideIndex = totalItems - itemsPerViewInitial;
+                if (currentItemIndex < totalItems - 1) {
+                    currentItemIndex++;
+                    updateCarousel();
                 }
-                 if (currentSlideIndex < 0 && totalItems > 0) currentSlideIndex = 0; // Segurança
-                updateCarousel();
             });
             
             let resizeTimeout;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    const oldItemsPerView = itemsPerViewInitial;
-                    itemsPerViewInitial = calculateItemsPerView();
-                    
-                    // Se o número de itens por view mudou, recalcula o currentSlideIndex
-                    // para tentar manter o mesmo "conjunto" de itens visível, se possível.
-                    if (oldItemsPerView !== itemsPerViewInitial) {
-                         // Tenta manter o item do meio da view anterior no meio da nova view
-                        let previouslyVisibleMiddleItemIndex = Math.floor(currentSlideIndex + oldItemsPerView / 2);
-                        currentSlideIndex = Math.max(0, Math.floor(previouslyVisibleMiddleItemIndex - itemsPerViewInitial / 2));
-                    }
-
-                    currentSlideIndex = Math.min(currentSlideIndex, totalItems - itemsPerViewInitial);
-                    if (currentSlideIndex < 0 && totalItems > 0) currentSlideIndex = 0;
-
-                    createDots(); 
-                    updateCarousel();
+                    updateItemWidth(); // É crucial atualizar a largura aqui
+                    // Não precisa recriar dots se a lógica é 1 dot por item
+                    updateCarousel(); // Re-renderiza para ajustar o transform
                 }, 250);
             });
 
             // Inicialização
-            if (items.length > 0) {
-                itemsPerViewInitial = calculateItemsPerView();
-                itemWidth = getItemWidth();
-                createDots();
-                updateCarousel(); // Chama para definir estado inicial dos botões e dots
-            } else { // Esconde controles se não houver itens
-                if(prevButton) prevButton.style.display = 'none';
-                if(nextButton) nextButton.style.display = 'none';
-                if(dotsContainer) dotsContainer.style.display = 'none';
-            }
+            updateItemWidth(); // Define a largura inicial
+            createDots();
+            updateCarousel();
         });
     </script>
 </body>

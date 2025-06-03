@@ -1,94 +1,63 @@
-/* style.css */
+/* style.css - Nova Paleta de Cores e Ajustes */
+:root {
+    --color-green: #77B923; /* Verde da paleta */
+    --color-yellow: #F7B500; /* Amarelo/Laranja claro da paleta */
+    --color-orange: #F27D00; /* Laranja forte da paleta */
+    --color-red-pink: #E43359; /* Vermelho/Rosa da paleta */
+    --color-purple: #8F3E98; /* Roxo da paleta */
+
+    --bg-dark-primary: #1A1A1D; /* Fundo principal bem escuro */
+    --bg-dark-secondary: #2C2F33; /* Fundo para containers/cards */
+    --text-light: #F0F0F0;      /* Texto principal claro */
+    --text-medium: #C3C6C9;     /* Texto secundário */
+}
+
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: #121212;
-    color: #00ff00;
+    background-color: var(--bg-dark-primary);
+    color: var(--text-light);
     margin: 0;
     padding: 0;
-    line-height: 1.8;
+    line-height: 1.7; /* Ajustado para melhor leitura com a fonte */
     font-size: 16px;
     position: relative;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px);
-    background-size: 100% 3px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: -1;
-}
+/* Removendo o efeito de scanlines neon, pode ser adicionado um mais sutil se desejado */
+/* body::before { ... } */
 
 .container {
     width: 95%;
     max-width: 1400px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: #1e1e1e;
-    border: 3px solid #00ff00;
-    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00 inset, 0 0 10px rgba(0, 255, 0, 0.5);
-    border-radius: 15px;
+    margin: 25px auto; /* Aumenta margem superior/inferior */
+    padding: 30px; /* Aumenta padding interno */
+    background-color: var(--bg-dark-secondary);
+    border: 3px solid var(--color-purple); /* Roxo como cor de borda principal */
+    box-shadow: 0 0 15px rgba(143, 62, 152, 0.3); /* Sombra suave roxa */
+    border-radius: 12px; /* Bordas um pouco menos arredondadas */
     position: relative;
 }
 
-.container::before, .container::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #00ff00;
-    box-shadow: 0 0 8px #00ff00;
-    z-index: 1;
-}
-.container::before {
-    top: -10px;
-    left: -10px;
-    clip-path: polygon(0 0, 50% 0, 50% 50%, 0 50%);
-}
-.container::after {
-    bottom: -10px;
-    right: -10px;
-    clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
-}
+/* Removendo decorações de canto neon, pode ser substituído por algo mais sutil */
+/* .container::before, .container::after { ... } */
 
 header {
     text-align: center;
-    padding: 30px 20px;
-    border-bottom: 4px dashed #FFA500;
-    margin-bottom: 40px;
-    background: linear-gradient(to bottom, #301030, #180818);
+    padding: 35px 20px;
+    border-bottom: 4px solid var(--color-orange); /* Laranja para a borda */
+    margin-bottom: 45px;
+    background: linear-gradient(to bottom, #23272A, var(--bg-dark-secondary)); /* Gradiente mais suave */
     position: relative;
     overflow: hidden;
 }
 
-header::before, header::after {
-    content: '⛶';
-    font-family: 'Arial', sans-serif;
-    color: #FFA500;
-    font-size: clamp(1.5em, 4vw, 2.5em);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    text-shadow: 0 0 5px #FFA500, 0 0 10px #ff8c00;
-    opacity: 0.7;
-    line-height: 1;
-}
-header::before {
-    left: 15px;
-}
-header::after {
-    right: 15px;
-}
+/* Removendo decoração de header neon */
+/* header::before, header::after { ... } */
 
 header h1 {
-    font-size: clamp(1.8em, 5vw, 2.8em);
-    color: #00ffff;
-    text-shadow: 0 0 7px #00ffff, 0 0 12px #00ffff, 0 0 15px #00dddd, 0 0 5px #fff;
+    font-size: clamp(1.9em, 5vw, 2.9em);
+    color: var(--color-yellow); /* Amarelo para o título principal */
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.3); /* Sombra simples para profundidade */
     margin: 0;
     display: flex;
     align-items: center;
@@ -99,30 +68,30 @@ header h1 {
 }
 
 .icon-header {
-    font-size: 1.2em;
+    font-size: 1.1em; /* Ajustado */
     vertical-align: middle;
-    filter: drop-shadow(0 0 3px #00ffff);
+    color: var(--color-yellow); /* Ícones acompanham cor do título */
 }
 
 nav {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     padding: 15px 0;
-    background-color: rgba(255, 165, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); /* Fundo mais sutil */
     border-radius: 8px;
-    border-top: 2px solid #FFA500;
-    border-bottom: 2px solid #FFA500;
+    border-top: 2px solid var(--color-green); /* Verde para bordas da navegação */
+    border-bottom: 2px solid var(--color-green);
 }
 
 nav a {
-    color: #FFA500;
+    color: var(--color-green); /* Verde para links */
     text-decoration: none;
-    margin: 0 8px;
-    font-size: clamp(0.9em, 2.5vw, 1.1em);
+    margin: 0 10px;
+    font-size: clamp(0.9em, 2.5vw, 1.15em);
     padding: 12px 18px;
     border: 2px solid transparent;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+    border-radius: 6px; /* Bordas mais retas */
+    transition: all 0.25s ease-in-out;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -132,596 +101,458 @@ nav a {
 nav a::before {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
+    bottom: 0px; /* Ajustado para ficar mais próximo */
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background-color: #00ffff;
-    transition: width 0.3s ease-in-out;
-    box-shadow: 0 0 5px #00ffff;
+    background-color: var(--color-red-pink); /* Vermelho/Rosa para sublinhado */
+    transition: width 0.25s ease-in-out;
 }
 
 nav a:hover::before, nav a:focus::before {
-    width: 100%;
+    width: 80%; /* Sublinhado não ocupa 100% */
 }
 
 nav a:hover, nav a:focus {
-    color: #00ffff;
-    background-color: rgba(0, 255, 255, 0.1);
-    border-color: #00ffff;
-    text-shadow: 0 0 8px #00ffff;
-    transform: translateY(-2px);
+    color: var(--color-red-pink); /* Vermelho/Rosa no hover */
+    background-color: rgba(228, 51, 89, 0.05);
+    /* border-color: var(--color-red-pink); */ /* Opcional: borda no hover */
+    transform: translateY(-1px); /* Movimento mais sutil */
 }
 
 .nav-icon {
-    font-size: 1.3em;
+    font-size: 1.2em; /* Ajustado */
 }
 
 h2 {
-    color: #ff00ff;
-    text-shadow: 0 0 6px #ff00ff, 0 0 10px #ff00ff, 0 0 3px #fff;
-    border-bottom: 3px solid;
-    border-image: linear-gradient(to right, #ff00ff, #00ff00) 1;
-    padding-bottom: 15px;
+    color: var(--color-red-pink); /* Vermelho/Rosa para H2 */
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    border-bottom: 3px solid var(--color-red-pink);
+    /* border-image: linear-gradient(to right, var(--color-red-pink), var(--color-orange)) 1; */
+    padding-bottom: 12px;
     margin-top: 40px;
-    margin-bottom: 25px;
-    font-size: clamp(1.5em, 4vw, 2.2em);
+    margin-bottom: 30px;
+    font-size: clamp(1.6em, 4vw, 2.3em);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 h3 {
-    color: #00ffff;
-    text-shadow: 0 0 4px #00ffff, 0 0 8px #00ffff;
+    color: var(--color-orange); /* Laranja para H3 */
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
     margin-top: 30px;
-    margin-bottom: 15px;
-    font-size: clamp(1.2em, 3vw, 1.8em);
+    margin-bottom: 20px;
+    font-size: clamp(1.3em, 3vw, 1.9em);
     display: flex;
     align-items: center;
     gap: 8px;
-    border-bottom: 2px dashed #00ffff;
-    padding-bottom: 8px;
+    border-bottom: 2px dashed var(--color-orange);
+    padding-bottom: 10px;
 }
 p.intro-text {
-    color: #00ffff;
+    color: var(--text-medium);
     text-align: center;
     margin-bottom: 30px;
     font-size: clamp(0.9em, 2.2vw, 1.05em);
     line-height: 1.7;
 }
 p.final-encouragement {
-    color: #ffff00;
+    color: var(--color-yellow);
     text-align: center;
     margin-top: 30px;
     font-size: clamp(0.95em, 2.3vw, 1.1em);
 }
 
 .section-icon, .subsection-icon, .tip-icon, .card-icon, .footer-icon, .question-icon, .result-icon, .projects-icon, .list-icon, .carousel-icon {
-    font-size: 1.1em;
-    vertical-align: text-bottom;
-    margin-right: 5px;
-    filter: drop-shadow(0 0 2px currentColor);
+    font-size: 1.2em; /* Ícones um pouco maiores */
+    vertical-align: middle; /* Melhor alinhamento */
+    margin-right: 8px; /* Mais espaço */
+    /* filter: none; Removendo drop-shadow neon */
 }
 
-.tip-icon { color: #ffff00; }
-.card-icon { color: #00ff00; }
-.question-icon { color: #ffff00; }
-.result-icon { color: #ffff00; }
-.projects-icon { color: #00ffff; }
-.list-icon { font-size: 0.9em; color: #00ff00; }
-.carousel-icon { color: #FFA500; }
+.tip-icon { color: var(--color-yellow); }
+.card-icon { color: var(--color-green); }
+.question-icon { color: var(--color-yellow); }
+.result-icon { color: var(--color-yellow); }
+.projects-icon { color: var(--color-orange); }
+.list-icon { font-size: 0.9em; color: var(--color-green); }
+.carousel-icon { color: var(--color-orange); }
 
 
 p, li {
-    color: #e0e0e0;
-    font-size: clamp(0.85em, 2vw, 1em);
+    color: var(--text-light); /* Texto principal mais claro */
+    font-size: clamp(0.9em, 2vw, 1em); /* Aumentando um pouco a base do texto */
     margin-bottom: 12px;
 }
 
 ul, ol {
-    padding-left: 25px;
+    padding-left: 30px; /* Mais recuo */
 }
 ul { list-style-type: none; }
 ul li::before {
-    content: '▶';
-    color: #00ff00;
-    font-size: 0.8em;
-    margin-right: 10px;
+    content: '❖'; /* Novo marcador */
+    color: var(--color-green);
+    font-size: 0.9em;
+    margin-right: 12px;
     display: inline-block;
-    text-shadow: 0 0 3px #00ff00;
 }
 ol {
     list-style-type: none;
     counter-reset: step-counter;
 }
 ol li {
-    margin-bottom: 8px;
+    margin-bottom: 10px; /* Mais espaço */
     counter-increment: step-counter;
     position: relative;
-    padding-left: 35px;
+    padding-left: 40px;
 }
 ol li::before {
     content: counter(step-counter);
     position: absolute;
     left: 0;
-    top: -2px;
-    color: #ff00ff;
-    font-weight: normal;
-    font-size: 1em;
-    background-color: rgba(255,0,255,0.1);
-    border: 1px solid #ff00ff;
+    top: 0px;
+    color: var(--bg-dark-secondary); /* Cor do número contrastando com o fundo do marcador */
+    background-color: var(--color-purple); /* Roxo para o fundo do número */
+    border: 2px solid var(--color-purple);
     border-radius: 50%;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     line-height: 1;
-    text-shadow: 0 0 3px #ff00ff;
+    font-size: 0.85em; /* Fonte do número dentro do círculo */
 }
 
 .hero-action {
     text-align: center;
-    margin: 30px 0;
+    margin: 35px 0;
 }
 .button-quiz {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(145deg, #ff00ff, #e600e6);
-    color: #121212;
-    padding: 15px 30px;
-    font-size: 1.2em;
+    background: var(--color-purple);
+    color: var(--text-light);
+    padding: 16px 32px; /* Botão maior */
+    font-size: 1.25em;
     text-decoration: none;
-    border: 3px solid #ff00ff;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
-    box-shadow: 0 0 8px #ff00ff, inset 0 0 5px rgba(255,255,255,0.3), inset 0 0 10px rgba(0,0,0,0.2);
+    border: none; /* Removendo borda, usando sombra para profundidade */
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 0px darken(var(--color-purple), 15%), 0 6px 10px rgba(0,0,0,0.2); /* Sombra 3D */
     position: relative;
 }
 .button-quiz:hover {
-    background: linear-gradient(145deg, #e600e6, #cc00cc);
-    color: #f0f0f0;
-    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff, 0 0 5px #fff, inset 0 0 8px rgba(0,0,0,0.3);
-    transform: scale(1.05) rotate(-1deg);
+    background: lighten(var(--color-purple), 5%);
+    box-shadow: 0 3px 0px darken(var(--color-purple), 10%), 0 5px 8px rgba(0,0,0,0.25);
+    transform: translateY(-1px);
 }
 .button-quiz:active {
-    transform: translateY(2px) scale(0.98) rotate(0deg);
-    box-shadow: 0 0 5px #ff00ff, inset 0 0 8px rgba(0,0,0,0.4);
+    transform: translateY(2px);
+    box-shadow: 0 1px 0px darken(var(--color-purple), 15%), 0 2px 3px rgba(0,0,0,0.3);
 }
 .button-icon { font-size: 1.2em; }
 
-/* --- Estilos do Carrossel --- */
+/* --- Estilos do Carrossel (1 item por vez e ajustes de conteúdo) --- */
 .carousel-container {
     position: relative;
     width: 100%;
-    margin: 30px auto;
-    padding: 0 50px;
+    max-width: 700px; /* Largura máxima para 1 card por vez */
+    margin: 40px auto; /* Centralizado e com mais margem */
+    padding: 0 60px; /* Espaço para botões laterais maiores */
     box-sizing: border-box;
 }
 .carousel-slider-wrapper {
     width: 100%;
     overflow: hidden;
-    border: 2px solid #FFA500;
+    border: 3px solid var(--color-orange);
     border-radius: 10px;
-    background: rgba(255, 165, 0, 0.05);
-    padding: 10px 0;
+    background: rgba(0,0,0, 0.1); /* Fundo sutil */
+    padding: 15px 0;
 }
 .carousel-slider {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    gap: 25px;
-    padding: 0 10px;
+    transition: transform 0.4s ease-in-out; /* Transição mais suave */
+    /* Gap não é necessário se cada item ocupa 100% */
 }
 .project-card.carousel-item {
-    min-width: 300px;
-    max-width: 320px;
-    flex: 0 0 auto;
-    margin-bottom: 0;
-    border-color: #00ff00;
-    box-shadow: 0 0 10px #00ff00, 0 0 5px #00ff00 inset;
+    min-width: 100%; /* Cada item ocupa 100% do wrapper */
+    max-width: 100%;
+    flex: 0 0 100%;
+    box-sizing: border-box; /* Importante para o padding não estourar a largura */
+    padding: 25px; /* Padding interno do card ajustado */
+    border-color: var(--color-green);
+    background-color: var(--bg-dark-secondary); /* Fundo do card */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Sombra suave */
 }
-.project-card.carousel-item:hover {
-    border-color: #ffff00;
-    box-shadow: 0 0 15px #ffff00, 0 0 10px #ffff00 inset, 0 5px 15px rgba(0,0,0,0.3);
+.project-card.carousel-item:hover { /* Efeito de hover mais sutil */
+    border-color: var(--color-yellow);
+    transform: none; /* Sem scale no hover para não bagunçar o carrossel de 1 item */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
-.project-card h4 {
-    color: #ffff00;
+.project-card h4 { /* Título do card de projeto */
+    color: var(--color-yellow);
     margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    border-bottom: 1px dashed #ffff00;
-    padding-bottom: 8px;
+    margin-bottom: 18px; /* Mais espaço */
+    font-size: 1.25em; /* Ajustado para caber melhor */
+    border-bottom: 2px dashed var(--color-yellow);
+    padding-bottom: 10px;
+    line-height: 1.3; /* Para títulos longos */
 }
-.project-card p {
-    font-size: 0.9em;
+.project-card p { /* Parágrafos dentro do card */
+    font-size: 0.85em; /* Reduzido para caber mais texto e melhorar legibilidade */
+    line-height: 1.6; /* Aumentado para texto menor */
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    margin-bottom: 10px; /* Espaçamento entre os <p> */
 }
-.project-card p strong {
-    color: #00ffff;
-    min-width: 150px;
+.project-card p strong { /* Labels: "Foco Matemático", etc. */
+    color: var(--color-orange);
+    min-width: 130px; /* Reduzido, mas ainda alinha */
     display: inline-block;
+    font-size: 0.95em; /* Tamanho do label */
+    margin-right: 5px; /* Pequeno espaço após o label */
 }
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #FFA500;
-    color: #1a1a1a;
-    border: 2px solid #1a1a1a;
+    background-color: var(--color-orange);
+    color: var(--bg-dark-primary);
+    border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    font-size: 28px;
+    font-size: 26px; /* Tamanho do ícone */
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 10px #FFA500, inset 0 0 5px rgba(255,255,255,0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: all 0.25s ease;
 }
 .carousel-button:hover {
-    background-color: #ffc966;
-    color: #000;
-    box-shadow: 0 0 15px #FFA500, 0 0 20px #FFA500, inset 0 0 8px rgba(0,0,0,0.2);
-    transform: translateY(-50%) scale(1.1);
+    background-color: lighten(var(--color-orange), 10%);
+    transform: translateY(-50%) scale(1.05);
 }
 .carousel-button:disabled {
-    background-color: #555;
-    color: #888;
-    box-shadow: none;
-    cursor: not-allowed;
-    opacity: 0.6;
+    background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; opacity: 0.6;
 }
-.carousel-button.prev { left: -10px; }
-.carousel-button.next { right: -10px; }
+.carousel-button.prev { left: 5px; } /* Mais próximo da borda do container */
+.carousel-button.next { right: 5px; }
 .carousel-dots { text-align: center; margin-top: 25px; }
 .carousel-dot {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: rgba(255, 165, 0, 0.4);
-    border: 2px solid #FFA500;
-    border-radius: 50%;
-    margin: 0 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 14px; height: 14px;
+    background-color: rgba(242, 125, 0, 0.3); /* Laranja suave */
+    border: 2px solid var(--color-orange);
+    border-radius: 50%; margin: 0 5px; cursor: pointer;
+    transition: all 0.25s ease;
 }
 .carousel-dot.active {
-    background-color: #FFA500;
-    transform: scale(1.3);
-    box-shadow: 0 0 10px #FFA500, 0 0 5px #ffddaa;
+    background-color: var(--color-orange);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px var(--color-orange);
 }
 
 /* --- Estilos para as páginas de Roteiro e Checklist --- */
 .page-content-container .container { max-width: 1000px; }
 .step-card {
-    background: linear-gradient(135deg, #2a2a2a, #1c1c1c);
+    background: linear-gradient(135deg, lighten(var(--bg-dark-secondary), 5%), var(--bg-dark-secondary));
     border: 2px solid;
-    padding: 25px;
+    padding: 25px 30px; /* Mais padding horizontal */
     margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(0,0,0,0.2);
-    animation: fadeInCard 0.6s ease-out;
+    border-radius: 8px; /* Bordas menos arredondadas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: fadeInCard 0.5s ease-out;
     position: relative;
     overflow: hidden;
 }
-.step-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0, 255, 255, 0.03) 5px, rgba(0, 255, 255, 0.03) 10px),
-        repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255, 0, 255, 0.03) 5px, rgba(255, 0, 255, 0.03) 10px);
-    opacity: 0.7;
-    z-index: 0;
-    pointer-events: none;
+.step-card::before { /* Removendo decoração interna de scanlines, pode ser outro efeito */
+    display:none;
 }
 .step-card > * { position: relative; z-index: 1; }
-#roteiro-detalhado .step-card {
-    border-color: #00ffff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 12px rgba(0, 255, 255, 0.3), 0 0 8px #00ffff inset;
-}
-#roteiro-detalhado .step-card h3 { color: #00ffff; border-bottom-color: #00ffff; }
+#roteiro-detalhado .step-card { border-color: var(--color-green); }
+#roteiro-detalhado .step-card h3 { color: var(--color-green); border-bottom-color: var(--color-green); }
 #roteiro-detalhado .step-card ol li::before {
-    color: #00ffff;
-    border-color: #00ffff;
-    background-color: rgba(0,255,255,0.1);
-    text-shadow: 0 0 3px #00ffff;
+    color: var(--bg-dark-secondary); background-color: var(--color-green); border-color: var(--color-green);
 }
-#checklist-detalhado .step-card {
-    border-color: #ff00ff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 12px rgba(255, 0, 255, 0.3), 0 0 8px #ff00ff inset;
-}
-#checklist-detalhado .step-card h3 { color: #ff00ff; border-bottom-color: #ff00ff; }
+#checklist-detalhado .step-card { border-color: var(--color-red-pink); }
+#checklist-detalhado .step-card h3 { color: var(--color-red-pink); border-bottom-color: var(--color-red-pink); }
 #checklist-detalhado ul.checklist-list > li::before {
-    content: var(--marker-content, '☐');
-    color: #ff00ff;
-    font-size: 1.2em;
-    margin-right: 12px;
-    text-shadow: 0 0 3px #ff00ff;
-    border: 1px solid #ff00ff;
-    border-radius: 3px;
-    width: 18px;
-    height: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    background-color: rgba(255,0,255,0.05);
+    content: var(--marker-content, '☐'); color: var(--color-red-pink); font-size: 1.2em; margin-right: 12px;
+    border: 1px solid var(--color-red-pink); border-radius: 3px; width: 18px; height: 18px;
+    display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+    background-color: rgba(228, 51, 89, 0.05);
 }
 #checklist-detalhado ul.checklist-list ul li::before {
-    content: var(--marker-content, '▫');
-    color: #00ffff;
-    border: none;
-    background-color: transparent;
-    font-size: 1.3em;
-    width: auto;
-    height: auto;
+    content: var(--marker-content, '▫'); color: var(--color-orange); border: none; background-color: transparent; font-size: 1.3em;
+    width: auto; height: auto;
 }
 #checklist-detalhado ul.checklist-list li.checked::before {
-    color: #00dd00;
-    text-shadow: 0 0 5px #00dd00;
-    border-color: #00dd00;
+    color: var(--color-green); border-color: var(--color-green);
 }
 #checklist-detalhado ul.checklist-list li.checked {
-    color: #a0a0a0;
-    text-decoration: line-through;
-    text-decoration-color: #ff00ff;
+    color: var(--text-medium); text-decoration: line-through; text-decoration-color: var(--color-red-pink);
 }
 p.team-name-field {
-    background-color: rgba(255,255,0,0.1);
-    border: 1px dashed #ffff00;
-    padding: 10px;
-    border-radius: 5px;
-    color: #ffff00;
-    margin-bottom: 20px;
+    background-color: rgba(247, 181, 0, 0.05); border: 1px dashed var(--color-yellow);
+    padding: 10px; border-radius: 5px; color: var(--color-yellow); margin-bottom: 20px;
 }
-p.team-name-field strong { color: #ffff00; }
+p.team-name-field strong { color: var(--color-yellow); }
 .input-team-name {
-    background-color: rgba(0,0,0,0.3);
-    border: 1px solid #ffff00;
-    color: #ffff00;
-    font-family: 'Press Start 2P', cursive;
-    padding: 8px;
-    border-radius: 4px;
-    margin-left: 10px;
-    width: calc(100% - 180px);
-    box-shadow: 0 0 5px #ffff00 inset;
+    background-color: rgba(0,0,0,0.2); border: 1px solid var(--color-yellow); color: var(--color-yellow);
+    font-family: 'Press Start 2P', cursive; padding: 8px; border-radius: 4px; margin-left: 10px;
+    width: calc(100% - 190px); /* Ajustado */ box-shadow: 0 0 5px rgba(247, 181, 0, 0.3) inset;
 }
-.input-team-name::placeholder { color: rgba(255, 255, 0, 0.5); }
-.step-card ul { padding-left: 10px; }
-.step-card ul ul li::before { content: var(--marker-content, '▹'); color: #FFA500; font-size: 1.1em; }
-.step-card strong { color: #ffff00; }
+.input-team-name::placeholder { color: rgba(247, 181, 0, 0.4); }
+.step-card ul { padding-left: 15px; } /* Menos padding */
+.step-card ul ul li::before { content: var(--marker-content, '▹'); color: var(--color-orange); font-size: 1.1em; }
+.step-card strong { color: var(--color-yellow); }
 .tips-card {
-    border-color: #ffff00;
-    background: linear-gradient(135deg, #2c2c1a, #1e1e12);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 12px rgba(255, 255, 0, 0.3), 0 0 8px #ffff00 inset;
+    border-color: var(--color-yellow);
+    background: linear-gradient(135deg, lighten(var(--bg-dark-secondary),3%), var(--bg-dark-secondary));
 }
-.tips-card h4 { color: #ffff00; border-bottom-color: #ffff00; font-size: 1.3em; }
-.tips-card p { color: #f0f0f0; }
+.tips-card h4 { color: var(--color-yellow); border-bottom-color: var(--color-yellow); font-size: 1.3em; }
+.tips-card p { color: var(--text-light); }
 .schedule-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    border: 2px solid #00ffff;
-    box-shadow: 0 0 10px #00ffff;
+    width: 100%; margin-top: 20px; border-collapse: separate; border-spacing: 0; /* Para border-radius funcionar */
+    border: 2px solid var(--color-orange); box-shadow: 0 0 8px rgba(242, 125, 0, 0.3); border-radius: 6px;
 }
 .schedule-table th, .schedule-table td {
-    border: 1px solid #00ffff;
-    padding: 10px;
-    text-align: left;
-    font-size: 0.9em;
+    border-bottom: 1px solid var(--color-orange); padding: 12px; text-align: left; font-size: 0.9em;
 }
-.schedule-table th { background-color: rgba(0, 255, 255, 0.2); color: #00ffff; }
-.schedule-table td { background-color: rgba(40, 40, 40, 0.5); color: #e0e0e0; }
-.schedule-table td .material-symbols-outlined { color: #ffff00; vertical-align: middle; font-size: 1.2em; }
+.schedule-table th { background-color: rgba(242, 125, 0, 0.2); color: var(--color-orange); }
+.schedule-table td { background-color: transparent; color: var(--text-light); }
+.schedule-table tr:last-child td { border-bottom: none; } /* Remove borda do último item */
+.schedule-table td .material-symbols-outlined { color: var(--color-yellow); vertical-align: middle; font-size: 1.2em; }
 
-/* --- Estilos CORRIGIDOS para o Jogo dos Quatro Cantos --- */
+/* --- Estilos para o Jogo dos Quatro Cantos --- */
 .quiz-page-container .container { max-width: 900px; }
-.quiz-container-cards { background-color: #1e1e1e; padding: 20px; border-radius: 10px; }
-.quiz-container-cards h2 { text-align: center; }
-.quiz-instructions { text-align: center; margin-bottom: 30px; color: #00ffff; font-size: 0.95em; }
+.quiz-container-cards { background-color: var(--bg-dark-secondary); padding: 25px; border-radius: 10px; }
+.quiz-container-cards h2 { text-align: center; color: var(--color-purple); }
+.quiz-instructions { text-align: center; margin-bottom: 30px; color: var(--color-purple); font-size: 0.95em; }
 .question-card-active {
-    margin-bottom: 25px;
-    padding: 25px;
-    background-color: #282828;
-    border-radius: 10px;
-    border: 2px solid #ff00ff;
-    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
-    animation: fadeInCard 0.5s ease-in-out;
+    margin-bottom: 25px; padding: 25px; background-color: lighten(var(--bg-dark-secondary), 5%);
+    border-radius: 8px; border: 2px solid var(--color-red-pink);
+    box-shadow: 0 0 12px rgba(228, 51, 89, 0.4); animation: fadeInCard 0.5s ease-in-out;
 }
 .question-card-active p {
-    color: #ffff00;
-    font-size: clamp(1em, 2.5vw, 1.2em);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--color-yellow); font-size: clamp(1em, 2.5vw, 1.2em); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
 }
 .options label {
-    display: block;
-    margin-bottom: 12px;
-    padding: 15px;
-    background-color: #333;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    color: #e0e0e0;
-    border: 1px solid #555;
-    font-size: clamp(0.85em, 2vw, 1em);
+    display: block; margin-bottom: 12px; padding: 15px; background-color: lighten(var(--bg-dark-primary), 10%);
+    border-radius: 6px; cursor: pointer; transition: all 0.25s ease; color: var(--text-light);
+    border: 1px solid #444; font-size: clamp(0.85em, 2vw, 1em);
 }
 .options label:hover {
-    background-color: #444;
-    transform: translateX(5px);
-    box-shadow: 0 0 8px #00ff00;
+    background-color: lighten(var(--bg-dark-primary), 15%); transform: translateX(5px);
+    border-color: var(--color-green); box-shadow: 0 0 8px rgba(119, 185, 35, 0.5);
 }
 .options input[type="radio"] {
-    margin-right: 12px;
-    accent-color: #00ff00;
-    transform: scale(1.3);
-    vertical-align: middle;
+    margin-right: 12px; accent-color: var(--color-green); transform: scale(1.3); vertical-align: middle;
 }
-
 .quiz-navigation-controls {
-    display: flex;
-    justify-content: space-between; /* Garante espaço entre os botões */
-    align-items: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px dashed #00ffff;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 30px; padding-top: 20px; border-top: 2px dashed var(--color-purple);
 }
-
 .quiz-nav-button {
-    /* Estilo base para todos os botões de navegação do quiz */
-    color: #1a1a1a; /* Texto escuro para contraste com fundos neon */
-    padding: 12px 20px; /* Padding ajustado */
-    font-size: clamp(0.9em, 2vw, 1em); /* Fonte responsiva */
-    border-width: 3px; /* Borda mais grossa */
-    border-style: solid;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-shadow: none; /* Remover sombra de texto padrão se houver */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center; /* Centraliza conteúdo do botão */
-    gap: 8px;
-    min-width: 120px; /* Largura mínima para consistência */
-    box-shadow: 0 0 8px currentColor, inset 0 0 5px rgba(255,255,255,0.3), inset 0 0 10px rgba(0,0,0,0.2);
+    color: var(--text-light); padding: 12px 20px; font-size: clamp(0.9em, 2vw, 1em);
+    border-width: 0px; /* Removendo borda, usando sombra para profundidade */
+    border-radius: 6px; cursor: pointer; transition: all 0.25s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-width: 130px; /* Largura mínima */
+    box-shadow: 0 3px 0px darken(currentColor, 20%), 0 5px 8px rgba(0,0,0,0.2); /* Sombra 3D */
     position: relative;
 }
-.quiz-nav-button .button-icon { /* Ícones dentro dos botões */
-    font-size: 1.2em;
-}
-
-/* Botão Voltar */
-#prev-question {
-    background-color: #FFA500; /* Laranja Neon */
-    border-color: #FFA500;
-}
-#prev-question:hover:not(:disabled) {
-    background-color: #1a1a1a;
-    color: #FFA500;
-    box-shadow: 0 0 15px #FFA500, 0 0 20px #FFA500, inset 0 0 8px rgba(0,0,0,0.3);
-    transform: scale(1.05);
-}
-
-/* Botão Próximo */
-#next-question {
-    background-color: #00ffff; /* Ciano Neon */
-    border-color: #00ffff;
-}
-#next-question:hover:not(:disabled) {
-    background-color: #1a1a1a;
-    color: #00ffff;
-    box-shadow: 0 0 15px #00ffff, 0 0 20px #00ffff, inset 0 0 8px rgba(0,0,0,0.3);
-    transform: scale(1.05);
-}
-
-/* Botão Ver Resultado */
-#submit-quiz-final {
-    background-color: #00ff00; /* Verde Neon */
-    border-color: #00ff00;
-}
-#submit-quiz-final:hover:not(:disabled) {
-    background-color: #1a1a1a;
-    color: #00ff00;
-    box-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00, inset 0 0 8px rgba(0,0,0,0.3);
-    transform: scale(1.05);
-}
-
+.quiz-nav-button .button-icon { font-size: 1.2em; }
+#prev-question { background-color: var(--color-orange); box-shadow: 0 3px 0px darken(var(--color-orange), 15%), 0 5px 8px rgba(0,0,0,0.2); }
+#prev-question:hover:not(:disabled) { background-color: lighten(var(--color-orange), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-orange),10%), 0 6px 9px rgba(0,0,0,0.25); }
+#next-question { background-color: var(--color-green); box-shadow: 0 3px 0px darken(var(--color-green), 15%), 0 5px 8px rgba(0,0,0,0.2); }
+#next-question:hover:not(:disabled) { background-color: lighten(var(--color-green), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-green),10%), 0 6px 9px rgba(0,0,0,0.25); }
+#submit-quiz-final { background-color: var(--color-red-pink); box-shadow: 0 3px 0px darken(var(--color-red-pink), 15%), 0 5px 8px rgba(0,0,0,0.2); }
+#submit-quiz-final:hover:not(:disabled) { background-color: lighten(var(--color-red-pink), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-red-pink),10%), 0 6px 9px rgba(0,0,0,0.25); }
 .quiz-nav-button:disabled {
-    background-color: #444; /* Cinza escuro para desabilitado */
-    border-color: #555;
-    color: #888;
-    cursor: not-allowed;
-    box-shadow: none;
-    opacity: 0.7;
+    background-color: #444; color: #888; cursor: not-allowed; opacity: 0.7;
+    box-shadow: 0 2px 0px #333, 0 3px 5px rgba(0,0,0,0.2); /* Sombra mais sutil para desabilitado */
 }
-.quiz-nav-button:active:not(:disabled) {
-    transform: translateY(2px) scale(0.98);
-    box-shadow: 0 0 5px currentColor, inset 0 0 8px rgba(0,0,0,0.4);
-}
-
+.quiz-nav-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0px darken(currentColor, 20%), 0 2px 3px rgba(0,0,0,0.3); }
 
 #quiz-result {
-    margin-top: 40px; padding: 30px; background-color: #282828; border-radius: 10px;
-    border: 3px solid #ffff00; box-shadow: 0 0 15px #ffff00, 0 0 10px rgba(255,255,0,0.3) inset;
-    animation: fadeInCard 0.7s ease-in-out;
+    margin-top: 40px; padding: 30px; background-color: var(--bg-dark-secondary); border-radius: 8px;
+    border: 3px solid var(--color-yellow); box-shadow: 0 0 15px rgba(247, 181, 0, 0.4);
+    animation: fadeInCard 0.6s ease-in-out;
 }
 #quiz-result h3 {
-    color: #ffff00; text-align: center; font-size: clamp(1.4em, 3.5vw, 2em); margin-bottom: 20px;
+    color: var(--color-yellow); text-align: center; font-size: clamp(1.4em, 3.5vw, 2em); margin-bottom: 20px;
     display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-#quiz-result p { color: #e0e0e0; font-size: clamp(0.9em, 2.2vw, 1.1em); margin-bottom: 15px; text-align: center; }
+#quiz-result p { color: var(--text-light); font-size: clamp(0.9em, 2.2vw, 1.1em); margin-bottom: 15px; text-align: center; }
 #quiz-result ul { padding-left: 0; list-style-type: none; }
 #quiz-result ul li {
-    background-color: #333; padding: 10px 15px; border-radius: 5px; margin-bottom: 10px;
-    border-left: 4px solid #00ff00; font-size: clamp(0.85em, 2vw, 1em);
+    background-color: lighten(var(--bg-dark-primary), 5%); padding: 10px 15px; border-radius: 5px; margin-bottom: 10px;
+    border-left: 4px solid var(--color-green); font-size: clamp(0.85em, 2vw, 1em);
     display: flex; align-items: center; gap: 8px;
 }
-.result-profile { color: #00ff00; font-weight: normal; }
+.result-profile { color: var(--color-green); }
 .result-projects-title {
-    color: #00ffff; margin-top: 25px; margin-bottom: 15px; display: block; text-align: center;
+    color: var(--color-orange); margin-top: 25px; margin-bottom: 15px; display: block; text-align: center;
     font-size: clamp(1.1em, 2.8vw, 1.5em); display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 
 footer {
-    text-align: center; padding: 25px; margin-top: 40px; border-top: 3px solid #FFA500;
-    color: #FFA500; font-size: 0.9em; background-color: #1e1e1e;
+    text-align: center; padding: 25px; margin-top: 40px; border-top: 3px solid var(--color-purple);
+    color: var(--color-purple); font-size: 0.9em; background-color: var(--bg-dark-primary);
     display: flex; align-items: center; justify-content: center; gap: 8px;
     position: relative; overflow: hidden;
 }
 footer::before {
     content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
-    background-image: repeating-linear-gradient(to right, #FFA500, #FFA500 3px, transparent 3px, transparent 6px);
+    background-image: repeating-linear-gradient(to right, var(--color-purple), var(--color-purple) 3px, transparent 3px, transparent 6px);
     opacity: 0.7;
 }
-.footer-icon { font-size: 1.2em; filter: drop-shadow(0 0 3px #FFA500); }
+.footer-icon { font-size: 1.2em; color: var(--color-purple); }
 
 /* Responsividade Adicional */
 @media (max-width: 768px) {
-    header::before, header::after { display: none; }
-    .carousel-container { padding: 0 10px; }
-    .carousel-button { width: 40px; height: 40px; font-size: 20px; }
-    .carousel-button.prev { left: 0px; }
-    .carousel-button.next { right: 0px; }
-    nav { padding: 10px 0; }
     nav a { margin: 5px; padding: 10px 12px; }
+    .carousel-container { padding: 0 15px; } /* Reduz padding para botões ficarem mais visíveis */
+    .carousel-button { width: 45px; height: 45px; font-size: 22px; }
+    .carousel-button.prev { left: -5px; } /* Ajusta posição */
+    .carousel-button.next { right: -5px; }
     .quiz-navigation-controls { flex-direction: column; gap: 15px; }
-    .quiz-nav-button { width: 80%; justify-content: center; }
+    .quiz-nav-button { width: 90%; justify-content: center; }
 }
 @media (max-width: 480px) {
-    body { font-size: 14px; }
-    .container { padding: 15px; border-width: 2px; }
-    .container::before, .container::after { display: none; }
-    header h1 { gap: 10px; }
+    body { font-size: 15px; } /* Aumenta um pouco a fonte base em telas pequenas para legibilidade */
+    .container { padding: 20px; border-width: 2px; }
+    header h1 { gap: 10px; font-size: clamp(1.7em, 5vw, 2.5em); }
     nav { display: flex; flex-direction: column; gap: 10px; }
     nav a { width: 90%; margin: 0 auto; justify-content: center; }
-    h2 { padding-bottom: 10px; margin-bottom: 20px; }
-    .project-card { padding: 15px; }
-    .button-quiz { padding: 12px 20px; width: 90%; justify-content: center;}
-    .carousel-slider { gap: 15px; }
-    .project-card.carousel-item { min-width: 260px; max-width: 280px; }
-    .carousel-button { display: none; }
-    .carousel-container { padding: 0; }
-    .quiz-container-cards { padding: 15px; }
+    h2 { padding-bottom: 10px; margin-bottom: 20px; font-size: clamp(1.5em, 4vw, 2.1em); }
+    h3 { font-size: clamp(1.2em, 3vw, 1.7em); }
+    .project-card { padding: 20px; }
+    .button-quiz { padding: 14px 25px; width: 90%; justify-content: center;}
+    .carousel-container { max-width: 90%; padding: 0 45px; } /* Ajusta para 1 item e botões */
+    .project-card.carousel-item { padding: 20px; }
+    .project-card h4 { font-size: 1.15em; }
+    .project-card p { font-size: 0.8em; line-height: 1.5; }
+    .project-card p strong { min-width: 110px; font-size: 0.9em;}
+    .quiz-container-cards { padding: 20px; }
     .question-card-active { padding: 20px; }
     .options label { padding: 12px; }
-    .quiz-nav-button { width: 100%; } /* Botões do quiz ocupam largura total em telas pequenas */
+    .quiz-nav-button { width: 100%; }
     #quiz-result { padding: 20px; }
     #quiz-result ul li { padding: 8px 12px; }
 }
 @keyframes fadeInCard {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
