@@ -1,4 +1,24 @@
 /* style.css - v6: Carrossel Largo, Fontes Harmonizadas, Checklist com Save */
+
+/* Base Material Symbols Outlined styles */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Default size, can be overridden */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
 :root {
     --color-green: #77B923;
     --color-yellow: #F7B500;
@@ -257,6 +277,13 @@ ol li::before {
 .project-card p strong {
     color: var(--color-orange); min-width: 150px; /* Aumentado */
     display: inline-block; font-size: 0.95em; margin-right: 8px; /* Mais espaço */
+}
+/* Estilo para ícones dentro dos parágrafos dos cards de projeto */
+.project-card p .material-symbols-outlined {
+    color: var(--color-green);
+    font-size: 1.25em; /* Correspondendo ao estilo anterior que vinha de .card-icon na regra geral */
+    vertical-align: middle; /* Correspondendo ao estilo anterior */
+    margin-right: 10px; /* Correspondendo ao estilo anterior */
 }
 .carousel-button {
     position: absolute; top: 50%; transform: translateY(-50%);
