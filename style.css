@@ -128,6 +128,7 @@ nav a:hover::before, nav a:focus::before { width: 80%; }
 nav a:hover, nav a:focus {
     color: var(--color-red-pink); background-color: rgba(228, 51, 89, 0.05);
     transform: translateY(-1px);
+    text-decoration: none !important;
 }
 .nav-icon { font-size: 1.2em; }
 
@@ -209,6 +210,7 @@ ol li::before {
     background: lighten(var(--color-purple), 5%);
     box-shadow: 0 3px 0px darken(var(--color-purple), 10%), 0 5px 8px rgba(0,0,0,0.25);
     transform: translateY(-1px);
+    text-decoration: none !important;
 }
 .button-quiz:active {
     transform: translateY(2px);
