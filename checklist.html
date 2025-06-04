@@ -130,7 +130,7 @@
                     <span class="material-symbols-outlined save-icon">save</span> Salvar Progresso
                 </button>
             </div>
-            <p id="saveStatus" style="text-align:center; margin-top:15px; color: var(--color-green); font-size: var(--font-size-sm);"></p>
+            <p id="saveStatus" style="text-align:center; margin-top:15px; color: var(--color-green); font-size: var(--font-size-sm); height: 1.5em;"></p>
             <p class="final-encouragement">Parabéns pela organização! Com este checklist, sua equipe está no caminho certo para um ótimo projeto!</p>
         </section>
     </div>
@@ -140,47 +140,30 @@
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-        const checklistAppId = 'projetosMatematicaChecklist'; // Unique ID for localStorage
-
+        const checklistAppId = 'projetosMatematicaChecklist_v1'; // Unique ID for localStorage, versioned
         const teamNameInput = document.getElementById('teamNameInput');
         const saveButton = document.getElementById('saveChecklistButton');
         const saveStatusEl = document.getElementById('saveStatus');
-        const checklistItems = document.querySelectorAll('#checklist-detalhado .checklist-list > li, #checklist-detalhado .checklist-list > li ul > li');
+        const checklistItems = document.querySelectorAll('#checklist-detalhado .checklist-list > li, #checklist-detalhado .checklist-list > li ul > li, #checklist-detalhado .checklist-list > li ul > li ul > li'); // Up to 3 levels
 
         // Function to apply styles based on checked state
         function applyCheckedStyle(item, isChecked) {
-            const currentMarker = window.getComputedStyle(item, '::before').content;
-            let newMarkerContent;
-
+            // The ::before content is now primarily handled by CSS based on .checked class
             if (isChecked) {
-                if (currentMarker.includes('☐')) newMarkerContent = '"☑ "';
-                else if (currentMarker.includes('▫')) newMarkerContent = '"▪ "';
-                else if (currentMarker.includes('▹')) newMarkerContent = '"▸ "';
                 item.classList.add('checked');
             } else {
-                if (currentMarker.includes('☑')) newMarkerContent = '"☐ "';
-                else if (currentMarker.includes('▪')) newMarkerContent = '"▫ "';
-                else if (currentMarker.includes('▸')) newMarkerContent = '"▹ "';
                 item.classList.remove('checked');
-            }
-            if (newMarkerContent) {
-                item.style.setProperty('--marker-content', newMarkerContent);
             }
         }
 
-
         checklistItems.forEach(item => {
             item.style.cursor = 'pointer';
-            // Set initial marker from CSS for all items
-            const initialMarkerContent = window.getComputedStyle(item, '::before').content;
-            item.style.setProperty('--marker-content', initialMarkerContent);
+            // No need to set initial --marker-content here if CSS handles it via .checked
             
             item.addEventListener('click', function(e) {
-                // Prevent click on parent if a sub-item's text is clicked directly
                 if (e.target === this || (e.target.parentNode === this && e.target.nodeName !== 'UL')) {
-                    this.classList.toggle('checked-temp'); // Temporary class to track current click state
-                    applyCheckedStyle(this, this.classList.contains('checked-temp'));
-                    this.classList.remove('checked-temp'); // Clean up temporary class
+                    const currentlyChecked = this.classList.toggle('checked');
+                    // No need to manually set --marker-content if CSS handles it with .checked
                 }
             });
         });
@@ -192,12 +175,17 @@
             };
             checklistItems.forEach(item => {
                 const itemId = item.dataset.id;
-                if (itemId) { // Only save items with a data-id
+                if (itemId) { 
                     checklistData.items[itemId] = item.classList.contains('checked');
                 }
             });
-            localStorage.setItem(checklistAppId, JSON.stringify(checklistData));
-            saveStatusEl.textContent = "Progresso salvo com sucesso!";
+            try {
+                localStorage.setItem(checklistAppId, JSON.stringify(checklistData));
+                saveStatusEl.textContent = "Progresso salvo com sucesso!";
+            } catch (e) {
+                console.error("Erro ao salvar no localStorage:", e);
+                saveStatusEl.textContent = "Erro ao salvar. O armazenamento pode estar cheio.";
+            }
             setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
         }
 
@@ -214,18 +202,14 @@
                             const itemId = item.dataset.id;
                             if (itemId && checklistData.items[itemId] !== undefined) {
                                 const isChecked = checklistData.items[itemId];
-                                if (isChecked) {
-                                    item.classList.add('checked'); // Add class before applying style
-                                } else {
-                                    item.classList.remove('checked');
-                                }
-                                applyCheckedStyle(item, isChecked);
+                                applyCheckedStyle(item, isChecked); // This will add/remove 'checked' class
                             }
                         });
                     }
                 } catch (e) {
                     console.error("Erro ao carregar dados do checklist:", e);
                     saveStatusEl.textContent = "Erro ao carregar dados salvos.";
+                     setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
                 }
             }
         }
@@ -234,7 +218,6 @@
             saveButton.addEventListener('click', saveChecklistState);
         }
 
-        // Load saved state when the page loads
         loadChecklistState();
     </script>
 </body>

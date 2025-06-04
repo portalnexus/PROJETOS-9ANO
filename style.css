@@ -1,4 +1,4 @@
-/* style.css - v5: Carrossel Maior, Fontes Harmonizadas, Checklist com Save */
+/* style.css - v6: Carrossel Largo, Fontes Harmonizadas, Checklist com Save */
 :root {
     --color-green: #77B923;
     --color-yellow: #F7B500;
@@ -6,21 +6,21 @@
     --color-red-pink: #E43359;
     --color-purple: #8F3E98;
 
-    --bg-dark-primary: #1A1A1D;
-    --bg-dark-secondary: #2C2F33;
-    --text-light: #F0F0F0;
-    --text-medium: #C3C6C9;
+    --bg-dark-primary: #181A1B; /* Um pouco mais escuro */
+    --bg-dark-secondary: #25282A; /* Um pouco mais claro para contraste */
+    --text-light: #EAEAEA;
+    --text-medium: #B0B3B8;
 
-    /* Font Sizes */
-    --font-size-base: 16px; /* Base para REM */
-    --font-size-sm: 0.875rem;  /* 14px */
-    --font-size-md: 1rem;      /* 16px */
-    --font-size-lg: 1.125rem;  /* 18px */
-    --font-size-xl: 1.25rem;   /* 20px */
-    --font-size-h1: clamp(2em, 5vw, 3em); /* Ajustado */
-    --font-size-h2: clamp(1.7em, 4vw, 2.4em); /* Ajustado */
-    --font-size-h3: clamp(1.4em, 3vw, 2em);   /* Ajustado */
-    --font-size-h4-card: 1.2rem; /* Para títulos de card */
+    /* Font Sizes - Hierarquia mais clara */
+    --font-size-base: 16px;
+    --font-size-xs: 0.75rem;   /* 12px - Para detalhes muito pequenos */
+    --font-size-sm: 0.875rem;  /* 14px - Texto de parágrafo nos cards */
+    --font-size-md: 1rem;      /* 16px - Texto principal, labels */
+    --font-size-lg: 1.125rem;  /* 18px - Títulos menores, nav links */
+    --font-size-xl: 1.375rem;  /* 22px - Subtítulos de seção (H3) */
+    --font-size-xxl: 1.75rem;  /* 28px - Títulos de seção (H2) */
+    --font-size-h1: clamp(2.2em, 5vw, 3.2em); /* Título principal */
+    --font-size-h4-card: 1.15rem; /* Títulos de card de projeto */
 }
 
 body {
@@ -29,29 +29,29 @@ body {
     color: var(--text-light);
     margin: 0;
     padding: 0;
-    line-height: 1.7;
-    font-size: var(--font-size-md); /* Usando variável base */
+    line-height: 1.75; /* Aumentado para melhor legibilidade */
+    font-size: var(--font-size-md);
     position: relative;
 }
 
 .container {
     width: 95%;
-    max-width: 1400px;
+    max-width: 1500px; /* Aumentado para telas largas */
     margin: 25px auto;
-    padding: 30px;
+    padding: 30px 35px; /* Mais padding horizontal */
     background-color: var(--bg-dark-secondary);
     border: 3px solid var(--color-purple);
-    box-shadow: 0 0 15px rgba(143, 62, 152, 0.3);
-    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(143, 62, 152, 0.35); /* Sombra um pouco mais forte */
+    border-radius: 10px; /* Um pouco menos arredondado */
     position: relative;
 }
 
 header {
     text-align: center;
-    padding: 35px 20px;
-    border-bottom: 4px solid var(--color-orange);
-    margin-bottom: 45px;
-    background: linear-gradient(to bottom, #23272A, var(--bg-dark-secondary));
+    padding: 40px 20px; /* Mais padding vertical */
+    border-bottom: 5px solid var(--color-orange); /* Borda mais grossa */
+    margin-bottom: 50px; /* Mais espaço */
+    background: linear-gradient(to bottom, #202225, var(--bg-dark-secondary));
     position: relative;
     overflow: hidden;
 }
@@ -59,116 +59,85 @@ header {
 header h1 {
     font-size: var(--font-size-h1);
     color: var(--color-yellow);
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.4); /* Sombra mais definida */
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 18px; /* Mais espaço */
     position: relative;
     z-index: 1;
 }
 
 .icon-header {
-    font-size: 1.1em;
+    font-size: 1.05em; /* Relativo ao H1 */
     vertical-align: middle;
     color: var(--color-yellow);
 }
 
 nav {
     text-align: center;
-    margin-bottom: 45px;
-    padding: 15px 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+    padding: 18px 0; /* Mais padding */
+    background-color: rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    border-top: 2px solid var(--color-green);
-    border-bottom: 2px solid var(--color-green);
+    border-top: 3px solid var(--color-green); /* Borda mais grossa */
+    border-bottom: 3px solid var(--color-green);
 }
 
 nav a {
     color: var(--color-green);
     text-decoration: none;
-    margin: 0 10px;
-    font-size: var(--font-size-lg); /* Ajustado */
-    padding: 12px 18px;
+    margin: 0 12px; /* Mais espaço */
+    font-size: var(--font-size-lg);
+    padding: 14px 20px; /* Mais padding */
     border: 2px solid transparent;
     border-radius: 6px;
     transition: all 0.25s ease-in-out;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px; /* Mais espaço */
     position: relative;
 }
-
 nav a::before {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background-color: var(--color-red-pink);
-    transition: width 0.25s ease-in-out;
+    content: ''; position: absolute; bottom: 0px; left: 50%;
+    transform: translateX(-50%); width: 0; height: 3px;
+    background-color: var(--color-red-pink); transition: width 0.25s ease-in-out;
 }
-
-nav a:hover::before, nav a:focus::before {
-    width: 80%;
-}
-
+nav a:hover::before, nav a:focus::before { width: 80%; }
 nav a:hover, nav a:focus {
-    color: var(--color-red-pink);
-    background-color: rgba(228, 51, 89, 0.05);
+    color: var(--color-red-pink); background-color: rgba(228, 51, 89, 0.05);
     transform: translateY(-1px);
 }
-
-.nav-icon {
-    font-size: 1.2em;
-}
+.nav-icon { font-size: 1.2em; }
 
 h2 {
-    color: var(--color-red-pink);
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-    border-bottom: 3px solid var(--color-red-pink);
-    padding-bottom: 12px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    font-size: var(--font-size-h2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--color-red-pink); text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    border-bottom: 3px solid var(--color-red-pink); padding-bottom: 15px; /* Mais padding */
+    margin-top: 45px; margin-bottom: 35px; /* Mais espaço */
+    font-size: var(--font-size-xxl);
+    display: flex; align-items: center; gap: 12px; /* Mais espaço */
 }
 
 h3 {
-    color: var(--color-orange);
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-size: var(--font-size-h3);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 2px dashed var(--color-orange);
-    padding-bottom: 10px;
+    color: var(--color-orange); text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    margin-top: 35px; margin-bottom: 25px; /* Mais espaço */
+    font-size: var(--font-size-xl);
+    display: flex; align-items: center; gap: 10px; /* Mais espaço */
+    border-bottom: 2px dashed var(--color-orange); padding-bottom: 12px; /* Mais padding */
 }
 p.intro-text {
-    color: var(--text-medium);
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: var(--font-size-lg); /* Ajustado */
-    line-height: 1.7;
+    color: var(--text-medium); text-align: center; margin-bottom: 35px; /* Mais espaço */
+    font-size: var(--font-size-lg); line-height: 1.75; /* Melhorado */
 }
 p.final-encouragement {
-    color: var(--color-yellow);
-    text-align: center;
-    margin-top: 30px;
-    font-size: var(--font-size-lg); /* Ajustado */
+    color: var(--color-yellow); text-align: center; margin-top: 35px; /* Mais espaço */
+    font-size: var(--font-size-lg);
 }
 
 .section-icon, .subsection-icon, .tip-icon, .card-icon, .footer-icon, .question-icon, .result-icon, .projects-icon, .list-icon, .carousel-icon, .save-icon {
-    font-size: 1.2em;
-    vertical-align: middle;
-    margin-right: 8px;
+    font-size: 1.25em; /* Ícones maiores */
+    vertical-align: middle; margin-right: 10px; /* Mais espaço */
 }
 .save-icon { color: var(--color-green); }
 .tip-icon { color: var(--color-yellow); }
@@ -176,71 +145,41 @@ p.final-encouragement {
 .question-icon { color: var(--color-yellow); }
 .result-icon { color: var(--color-yellow); }
 .projects-icon { color: var(--color-orange); }
-.list-icon { font-size: 0.9em; color: var(--color-green); }
+.list-icon { font-size: 1em; color: var(--color-green); } /* Aumentado */
 .carousel-icon { color: var(--color-orange); }
 
 p, li {
-    color: var(--text-light);
-    font-size: var(--font-size-md); /* Usando variável base */
-    margin-bottom: 12px;
+    color: var(--text-light); font-size: var(--font-size-md);
+    margin-bottom: 14px; /* Mais espaço */
 }
 
-ul, ol {
-    padding-left: 30px;
-}
+ul, ol { padding-left: 35px; /* Mais recuo */ }
 ul { list-style-type: none; }
 ul li::before {
-    content: '❖';
-    color: var(--color-green);
-    font-size: 0.9em;
-    margin-right: 12px;
-    display: inline-block;
+    content: '❖'; color: var(--color-green); font-size: 1em; /* Aumentado */
+    margin-right: 14px; display: inline-block; /* Mais espaço */
 }
-ol {
-    list-style-type: none;
-    counter-reset: step-counter;
-}
+ol { list-style-type: none; counter-reset: step-counter; }
 ol li {
-    margin-bottom: 10px;
-    counter-increment: step-counter;
-    position: relative;
-    padding-left: 40px;
+    margin-bottom: 12px; counter-increment: step-counter;
+    position: relative; padding-left: 45px; /* Mais espaço */
 }
 ol li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 0;
-    top: 0px;
-    color: var(--bg-dark-secondary);
-    background-color: var(--color-purple);
-    border: 2px solid var(--color-purple);
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-size: 0.85em;
+    content: counter(step-counter); position: absolute; left: 0; top: -1px; /* Ajuste vertical */
+    color: var(--bg-dark-secondary); background-color: var(--color-purple);
+    border: 2px solid var(--color-purple); border-radius: 50%;
+    width: 30px; height: 30px; /* Maior */
+    display: inline-flex; align-items: center; justify-content: center;
+    line-height: 1; font-size: 0.9em;
 }
 
-.hero-action {
-    text-align: center;
-    margin: 35px 0;
-}
-.button-quiz, .button-save { /* Estilo unificado para botões de ação */
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-light);
-    padding: 14px 28px; /* Ajustado */
-    font-size: var(--font-size-lg); /* Ajustado */
-    text-decoration: none;
-    border: none;
-    border-radius: 6px;
-    transition: all 0.25s ease;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-    position: relative;
+.hero-action { text-align: center; margin: 40px 0; /* Mais espaço */ }
+.button-quiz, .button-save {
+    display: inline-flex; align-items: center; gap: 12px; /* Mais espaço */
+    color: var(--text-light); padding: 16px 30px; /* Ajustado */
+    font-size: var(--font-size-lg); text-decoration: none;
+    border: none; border-radius: 6px; transition: all 0.25s ease;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2); position: relative;
 }
 .button-quiz {
     background: var(--color-purple);
@@ -255,11 +194,10 @@ ol li::before {
     transform: translateY(2px);
     box-shadow: 0 1px 0px darken(var(--color-purple), 15%), 0 2px 3px rgba(0,0,0,0.3);
 }
-
 .button-save {
     background: var(--color-green);
     box-shadow: 0 4px 0px darken(var(--color-green), 15%), 0 6px 10px rgba(0,0,0,0.2);
-    margin-top: 20px;
+    margin-top: 25px; /* Mais espaço */
 }
 .button-save:hover {
     background: lighten(var(--color-green), 5%);
@@ -275,10 +213,10 @@ ol li::before {
 /* --- Estilos do Carrossel (Aproveitando melhor a tela) --- */
 .carousel-container {
     position: relative;
-    width: 90%; /* Mais largo */
-    max-width: 850px; /* Aumentado para melhor aproveitamento */
-    margin: 40px auto;
-    padding: 0 60px;
+    width: 90%; /* Mantido, mas max-width aumentado */
+    max-width: 950px; /* Aumentado significativamente */
+    margin: 45px auto; /* Mais margem */
+    padding: 0 65px; /* Espaço para botões laterais maiores */
     box-sizing: border-box;
 }
 .carousel-slider-wrapper {
@@ -287,70 +225,48 @@ ol li::before {
     border: 3px solid var(--color-orange);
     border-radius: 10px;
     background: rgba(0,0,0, 0.1);
-    padding: 20px 0; /* Mais padding vertical */
+    padding: 25px 0; /* Mais padding vertical */
 }
-.carousel-slider {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-}
+.carousel-slider { display: flex; transition: transform 0.4s ease-in-out; }
 .project-card.carousel-item {
-    min-width: 100%;
-    max-width: 100%;
-    flex: 0 0 100%;
-    box-sizing: border-box;
-    padding: 30px; /* Mais padding interno no card */
-    border: 2px solid var(--color-green); /* Borda mais sutil */
+    min-width: 100%; max-width: 100%; flex: 0 0 100%;
+    box-sizing: border-box; padding: 30px 35px; /* Mais padding horizontal */
+    border: 2px solid var(--color-green);
     background-color: var(--bg-dark-secondary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    border-radius: 8px; /* Consistente com outros cards */
+    border-radius: 8px;
+    min-height: 480px; /* Altura mínima para consistência, ajuste conforme necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui espaço se o conteúdo for menor */
 }
 .project-card.carousel-item:hover {
-    border-color: var(--color-yellow);
-    transform: none;
+    border-color: var(--color-yellow); transform: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 .project-card h4 {
-    color: var(--color-yellow);
-    margin-top: 0;
-    margin-bottom: 20px; /* Mais espaço */
+    color: var(--color-yellow); margin-top: 0; margin-bottom: 20px;
     font-size: var(--font-size-h4-card); /* Usando variável */
-    border-bottom: 2px dashed var(--color-yellow);
-    padding-bottom: 12px;
-    line-height: 1.4; /* Melhorado */
+    border-bottom: 2px dashed var(--color-yellow); padding-bottom: 12px;
+    line-height: 1.4;
 }
 .project-card p {
-    font-size: var(--font-size-sm); /* Usando variável para consistência e legibilidade */
-    line-height: 1.65;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 12px;
+    font-size: var(--font-size-sm); /* Usando variável */
+    line-height: 1.65; display: flex; align-items: flex-start;
+    gap: 10px; /* Mais espaço */ margin-bottom: 12px;
 }
 .project-card p strong {
-    color: var(--color-orange);
-    min-width: 140px; /* Ajustado */
-    display: inline-block;
-    font-size: 0.95em;
-    margin-right: 5px;
+    color: var(--color-orange); min-width: 150px; /* Aumentado */
+    display: inline-block; font-size: 0.95em; margin-right: 8px; /* Mais espaço */
 }
 .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--color-orange);
-    color: var(--bg-dark-primary);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 26px;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    transition: all 0.25s ease;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background-color: var(--color-orange); color: var(--bg-dark-primary);
+    border: none; border-radius: 50%;
+    width: 55px; height: 55px; /* Maiores */
+    font-size: 28px; cursor: pointer; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: all 0.25s ease;
 }
 .carousel-button:hover {
     background-color: lighten(var(--color-orange), 10%);
@@ -359,35 +275,28 @@ ol li::before {
 .carousel-button:disabled {
     background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; opacity: 0.6;
 }
-.carousel-button.prev { left: 0px; } /* Ajustado para ficar mais próximo */
+.carousel-button.prev { left: 0px; } /* Ajustado */
 .carousel-button.next { right: 0px; }
-.carousel-dots { text-align: center; margin-top: 25px; }
+.carousel-dots { text-align: center; margin-top: 30px; /* Mais espaço */ }
 .carousel-dot {
-    display: inline-block;
-    width: 14px; height: 14px;
+    display: inline-block; width: 16px; height: 16px; /* Maiores */
     background-color: rgba(242, 125, 0, 0.3);
     border: 2px solid var(--color-orange);
-    border-radius: 50%; margin: 0 5px; cursor: pointer;
+    border-radius: 50%; margin: 0 6px; cursor: pointer;
     transition: all 0.25s ease;
 }
 .carousel-dot.active {
-    background-color: var(--color-orange);
-    transform: scale(1.2);
-    box-shadow: 0 0 8px var(--color-orange);
+    background-color: var(--color-orange); transform: scale(1.25); /* Maior destaque */
+    box-shadow: 0 0 10px var(--color-orange);
 }
 
 /* --- Estilos para as páginas de Roteiro e Checklist --- */
 .page-content-container .container { max-width: 1000px; }
 .step-card {
     background: linear-gradient(135deg, lighten(var(--bg-dark-secondary), 5%), var(--bg-dark-secondary));
-    border: 2px solid;
-    padding: 25px 30px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    animation: fadeInCard 0.5s ease-out;
-    position: relative;
-    overflow: hidden;
+    border: 2px solid; padding: 25px 30px; margin-bottom: 30px;
+    border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    animation: fadeInCard 0.5s ease-out; position: relative; overflow: hidden;
 }
 .step-card > * { position: relative; z-index: 1; }
 #roteiro-detalhado .step-card { border-color: var(--color-green); }
@@ -398,27 +307,24 @@ ol li::before {
 #checklist-detalhado .step-card { border-color: var(--color-red-pink); }
 #checklist-detalhado .step-card h3 { color: var(--color-red-pink); border-bottom-color: var(--color-red-pink); }
 
-/* Unificando estilo dos checkboxes */
+/* Unificando estilo dos checkboxes para Laranja */
 #checklist-detalhado ul.checklist-list > li::before,
 #checklist-detalhado ul.checklist-list ul li::before,
-#checklist-detalhado ul.checklist-list ul ul li::before { /* Para 3 níveis, se houver */
-    content: var(--marker-content, '☐'); /* Padrão é caixa vazia */
-    color: var(--color-orange); /* Cor laranja para a caixa e ícone padrão */
-    font-size: 1.2em;
-    margin-right: 12px;
-    border: 1px solid var(--color-orange);
-    border-radius: 3px;
-    width: 18px;
-    height: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
+#checklist-detalhado ul.checklist-list ul ul li::before {
+    content: var(--marker-content, '☐');
+    color: var(--color-orange); /* Cor Laranja para a caixa e ícone padrão */
+    font-size: 1.25em; /* Aumentado */
+    margin-right: 14px; /* Mais espaço */
+    border: 2px solid var(--color-orange); /* Borda mais grossa */
+    border-radius: 4px; /* Menos arredondado */
+    width: 20px; /* Aumentado */
+    height: 20px; /* Aumentado */
+    display: inline-flex; align-items: center; justify-content: center; line-height: 1;
     background-color: rgba(242, 125, 0, 0.1); /* Fundo laranja suave */
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 #checklist-detalhado ul.checklist-list li.checked::before {
-    content: var(--marker-content, '☑'); /* Check marcado */
+    content: var(--marker-content, '☑');
     background-color: var(--color-orange); /* Fundo preenchido quando marcado */
     color: var(--bg-dark-secondary); /* Cor do check contrastante */
     border-color: var(--color-orange);
@@ -429,34 +335,31 @@ ol li::before {
 
 p.team-name-field {
     background-color: rgba(247, 181, 0, 0.05); border: 1px dashed var(--color-yellow);
-    padding: 10px; border-radius: 5px; color: var(--color-yellow); margin-bottom: 20px;
-    display: flex; /* Para alinhar label e input */
-    align-items: center;
+    padding: 12px 15px; /* Mais padding */ border-radius: 5px; color: var(--color-yellow); margin-bottom: 25px;
+    display: flex; align-items: center;
 }
-p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; }
+p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; font-size: var(--font-size-md); }
 .input-team-name {
     background-color: rgba(0,0,0,0.2); border: 1px solid var(--color-yellow); color: var(--color-yellow);
-    font-family: 'Press Start 2P', cursive; padding: 8px; border-radius: 4px;
-    flex-grow: 1; /* Input ocupa espaço restante */
-    box-shadow: 0 0 5px rgba(247, 181, 0, 0.3) inset;
-    font-size: var(--font-size-sm); /* Ajustado */
+    font-family: 'Press Start 2P', cursive; padding: 10px; /* Mais padding */ border-radius: 4px;
+    flex-grow: 1; box-shadow: 0 0 5px rgba(247, 181, 0, 0.3) inset;
+    font-size: var(--font-size-sm);
 }
 .input-team-name::placeholder { color: rgba(247, 181, 0, 0.4); }
 .step-card ul { padding-left: 15px; }
-/* .step-card ul ul li::before { content: var(--marker-content, '▹'); color: var(--color-orange); font-size: 1.1em; } */ /* Removido para unificar */
 .step-card strong { color: var(--color-yellow); }
 .tips-card {
     border-color: var(--color-yellow);
     background: linear-gradient(135deg, lighten(var(--bg-dark-secondary),3%), var(--bg-dark-secondary));
 }
-.tips-card h4 { color: var(--color-yellow); border-bottom-color: var(--color-yellow); font-size: var(--font-size-xl); } /* Ajustado */
+.tips-card h4 { color: var(--color-yellow); border-bottom-color: var(--color-yellow); font-size: var(--font-size-xl); }
 .tips-card p { color: var(--text-light); }
 .schedule-table {
     width: 100%; margin-top: 20px; border-collapse: separate; border-spacing: 0;
     border: 2px solid var(--color-orange); box-shadow: 0 0 8px rgba(242, 125, 0, 0.3); border-radius: 6px;
 }
 .schedule-table th, .schedule-table td {
-    border-bottom: 1px solid var(--color-orange); padding: 12px; text-align: left; font-size: var(--font-size-sm); /* Ajustado */
+    border-bottom: 1px solid var(--color-orange); padding: 12px; text-align: left; font-size: var(--font-size-sm);
 }
 .schedule-table th { background-color: rgba(242, 125, 0, 0.2); color: var(--color-orange); }
 .schedule-table td { background-color: transparent; color: var(--text-light); }
@@ -466,21 +369,21 @@ p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; }
 /* --- Estilos para o Jogo dos Quatro Cantos --- */
 .quiz-page-container .container { max-width: 900px; }
 .quiz-container-cards { background-color: var(--bg-dark-secondary); padding: 25px; border-radius: 10px; }
-.quiz-container-cards h2 { text-align: center; color: var(--color-purple); font-size: var(--font-size-h2); } /* Ajustado */
-.quiz-instructions { text-align: center; margin-bottom: 30px; color: var(--color-purple); font-size: var(--font-size-md); } /* Ajustado */
+.quiz-container-cards h2 { text-align: center; color: var(--color-purple); font-size: var(--font-size-xxl); }
+.quiz-instructions { text-align: center; margin-bottom: 30px; color: var(--color-purple); font-size: var(--font-size-md); }
 .question-card-active {
     margin-bottom: 25px; padding: 25px; background-color: lighten(var(--bg-dark-secondary), 5%);
     border-radius: 8px; border: 2px solid var(--color-red-pink);
     box-shadow: 0 0 12px rgba(228, 51, 89, 0.4); animation: fadeInCard 0.5s ease-in-out;
 }
-.question-card-active p { /* Texto da pergunta */
-    color: var(--color-yellow); font-size: var(--font-size-lg); margin-bottom: 20px; /* Ajustado */
+.question-card-active p {
+    color: var(--color-yellow); font-size: var(--font-size-lg); margin-bottom: 20px;
     display: flex; align-items: center; gap: 10px;
 }
 .options label {
     display: block; margin-bottom: 12px; padding: 15px; background-color: lighten(var(--bg-dark-primary), 10%);
     border-radius: 6px; cursor: pointer; transition: all 0.25s ease; color: var(--text-light);
-    border: 1px solid #444; font-size: var(--font-size-sm); /* Ajustado */
+    border: 1px solid #444; font-size: var(--font-size-sm);
 }
 .options label:hover {
     background-color: lighten(var(--bg-dark-primary), 15%); transform: translateX(5px);
@@ -494,7 +397,7 @@ p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; }
     margin-top: 30px; padding-top: 20px; border-top: 2px dashed var(--color-purple);
 }
 .quiz-nav-button {
-    color: var(--text-light); padding: 12px 20px; font-size: var(--font-size-md); /* Ajustado */
+    color: var(--text-light); padding: 12px 20px; font-size: var(--font-size-md);
     border-width: 0px;
     border-radius: 6px; cursor: pointer; transition: all 0.25s ease;
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -521,25 +424,25 @@ p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; }
     animation: fadeInCard 0.6s ease-in-out;
 }
 #quiz-result h3 {
-    color: var(--color-yellow); text-align: center; font-size: var(--font-size-h3); margin-bottom: 20px; /* Ajustado */
+    color: var(--color-yellow); text-align: center; font-size: var(--font-size-xl); margin-bottom: 20px;
     display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-#quiz-result p { color: var(--text-light); font-size: var(--font-size-md); margin-bottom: 15px; text-align: center; } /* Ajustado */
+#quiz-result p { color: var(--text-light); font-size: var(--font-size-md); margin-bottom: 15px; text-align: center; }
 #quiz-result ul { padding-left: 0; list-style-type: none; }
 #quiz-result ul li {
     background-color: lighten(var(--bg-dark-primary), 5%); padding: 10px 15px; border-radius: 5px; margin-bottom: 10px;
-    border-left: 4px solid var(--color-green); font-size: var(--font-size-sm); /* Ajustado */
+    border-left: 4px solid var(--color-green); font-size: var(--font-size-sm);
     display: flex; align-items: center; gap: 8px;
 }
 .result-profile { color: var(--color-green); }
 .result-projects-title {
     color: var(--color-orange); margin-top: 25px; margin-bottom: 15px; display: block; text-align: center;
-    font-size: var(--font-size-xl); display: flex; align-items: center; justify-content: center; gap: 10px; /* Ajustado */
+    font-size: var(--font-size-lg); display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 
 footer {
     text-align: center; padding: 25px; margin-top: 40px; border-top: 3px solid var(--color-purple);
-    color: var(--color-purple); font-size: var(--font-size-sm); background-color: var(--bg-dark-primary); /* Ajustado */
+    color: var(--color-purple); font-size: var(--font-size-sm); background-color: var(--bg-dark-primary);
     display: flex; align-items: center; justify-content: center; gap: 8px;
     position: relative; overflow: hidden;
 }
@@ -551,19 +454,26 @@ footer::before {
 .footer-icon { font-size: 1.2em; color: var(--color-purple); }
 
 /* Responsividade Adicional */
+@media (max-width: 1024px) { /* Ajustes para tablets e telas menores */
+    .carousel-container { max-width: 90%; padding: 0 50px; }
+    .project-card h4 { font-size: 1.1rem; }
+    .project-card p { font-size: 0.825rem; }
+}
+
 @media (max-width: 768px) {
-    nav a { margin: 5px; padding: 10px 12px; font-size: var(--font-size-md); } /* Ajustado */
-    .carousel-container { padding: 0 10px; max-width: 95%; } /* Mais flexível */
+    nav a { margin: 5px; padding: 10px 12px; font-size: var(--font-size-md); }
+    .carousel-container { padding: 0 10px; max-width: 95%; }
     .carousel-button { width: 45px; height: 45px; font-size: 22px; }
     .carousel-button.prev { left: -5px; }
     .carousel-button.next { right: -5px; }
     .quiz-navigation-controls { flex-direction: column; gap: 15px; }
     .quiz-nav-button { width: 90%; justify-content: center; }
-    .project-card h4 { font-size: 1.1rem; }
-    .project-card p { font-size: 0.8rem; }
+    .project-card h4 { font-size: 1.05rem; } /* Reduzido para telas menores */
+    .project-card p { font-size: 0.78rem; } /* Reduzido para telas menores */
+    .project-card p strong { min-width: 120px; }
 }
 @media (max-width: 480px) {
-    body { font-size: 14px; } /* Base menor para telas muito pequenas */
+    body { font-size: 14px; }
     .container { padding: 15px; border-width: 2px; }
     header h1 { gap: 10px; font-size: clamp(1.6em, 5vw, 2.2em); }
     nav { display: flex; flex-direction: column; gap: 10px; }
@@ -572,14 +482,14 @@ footer::before {
     h3 { font-size: clamp(1.1em, 3vw, 1.6em); }
     .project-card { padding: 15px; }
     .button-quiz, .button-save { padding: 12px 20px; width: 90%; justify-content: center; font-size: var(--font-size-md);}
-    .carousel-container { max-width: 100%; padding: 0 40px; } /* Botões visíveis */
-    .project-card.carousel-item { padding: 15px; }
-    .project-card h4 { font-size: 1.05rem; margin-bottom: 15px; }
+    .carousel-container { max-width: 100%; padding: 0 40px; }
+    .project-card.carousel-item { padding: 20px; min-height: auto; /* Permite que a altura se ajuste ao conteúdo */ }
+    .project-card h4 { font-size: 1rem; margin-bottom: 12px; }
     .project-card p { font-size: 0.75rem; line-height: 1.5; margin-bottom: 8px;}
-    .project-card p strong { min-width: 100px; font-size: 0.85em;}
+    .project-card p strong { min-width: auto; display: block; margin-bottom: 3px; } /* Labels em bloco */
     .quiz-container-cards { padding: 15px; }
     .question-card-active { padding: 15px; }
-    .options label { padding: 10px; font-size: var(--font-size-xs, 0.75rem); } /* Adicionando fallback */
+    .options label { padding: 10px; font-size: var(--font-size-xs, 0.75rem); }
     .quiz-nav-button { width: 100%; font-size: var(--font-size-sm); }
     #quiz-result { padding: 15px; }
     #quiz-result ul li { padding: 8px 10px; }
