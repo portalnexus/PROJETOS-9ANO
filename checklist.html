@@ -18,7 +18,7 @@
         <a href="index.html"><span class="material-symbols-outlined nav-icon">home</span> Início</a>
         <a href="index.html#ideias"><span class="material-symbols-outlined nav-icon">emoji_objects</span> Ideias</a>
         <a href="roteiro.html"><span class="material-symbols-outlined nav-icon">rule</span> Roteiro</a>
-        <a href="jogo.html"><span class="material-symbols-outlined nav-icon">sports_esports</span> Jogo dos Cantos</a>
+        <a href="jogo.html"><span class="material-symbols-outlined nav-icon">sports_esports</span> Jogo dos 4 Cantos</a>
     </nav>
     <div class="container page-content-container">
         <section id="checklist-detalhado">
@@ -29,6 +29,12 @@
                 <p class="team-name-field"><strong>Nome da Equipe:</strong> 
                     <input type="text" id="teamNameInput" placeholder="Digite o nome da sua equipe aqui..." class="input-team-name">
                 </p>
+                <button id="saveChecklistButton" class="icon-button" aria-label="Salvar Progresso">
+                    <span class="material-symbols-outlined">save</span>
+                </button>
+                <button id="clearChecklistButton" class="icon-button" aria-label="Limpar Checklist">
+                    <span class="material-symbols-outlined">delete_forever</span>
+                </button>
             </div>
 
             <div class="step-card">
@@ -125,11 +131,7 @@
                     <li data-id="lembrete-curiosidade">Estamos curiosos e não desistimos fácil?</li>
                 </ul>
             </div>
-            <div style="text-align: center;">
-                <button id="saveChecklistButton" class="button-save">
-                    <span class="material-symbols-outlined save-icon">save</span> Salvar Progresso
-                </button>
-            </div>
+            <!-- Old save button div removed -->
             <p id="saveStatus" style="text-align:center; margin-top:15px; color: var(--color-green); font-size: var(--font-size-sm); height: 1.5em;"></p>
             <p class="final-encouragement">Parabéns pela organização! Com este checklist, sua equipe está no caminho certo para um ótimo projeto!</p>
         </section>
@@ -216,6 +218,28 @@
 
         if (saveButton) {
             saveButton.addEventListener('click', saveChecklistState);
+        }
+
+        const clearButton = document.getElementById('clearChecklistButton');
+
+        function clearChecklist() {
+            teamNameInput.value = '';
+            checklistItems.forEach(item => {
+                item.classList.remove('checked');
+                // If you were manually setting --marker-content via JS, reset it here too
+            });
+            try {
+                localStorage.removeItem(checklistAppId);
+                saveStatusEl.textContent = "Checklist limpo com sucesso!";
+            } catch (e) {
+                console.error("Erro ao limpar o localStorage:", e);
+                saveStatusEl.textContent = "Erro ao limpar o checklist.";
+            }
+            setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
+        }
+
+        if (clearButton) {
+            clearButton.addEventListener('click', clearChecklist);
         }
 
         loadChecklistState();
