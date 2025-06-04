@@ -268,11 +268,15 @@ ol li::before {
     font-size: var(--font-size-h4-card); /* Usando variável */
     border-bottom: 2px dashed var(--color-yellow); padding-bottom: 12px;
     line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* fallback mais antigo */
 }
 .project-card p {
     font-size: var(--font-size-sm); /* Usando variável */
     line-height: 1.65; display: flex; align-items: flex-start;
     gap: 10px; /* Mais espaço */ margin-bottom: 12px;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* fallback mais antigo */
 }
 .project-card p strong {
     color: var(--color-orange); min-width: 150px; /* Aumentado */
@@ -496,7 +500,12 @@ footer::before {
     .quiz-nav-button { width: 90%; justify-content: center; }
     .project-card h4 { font-size: 1.05rem; } /* Reduzido para telas menores */
     .project-card p { font-size: 0.78rem; } /* Reduzido para telas menores */
-    .project-card p strong { min-width: 120px; }
+    /* Ajuste para evitar empilhamento de texto em telas médias */
+    .project-card p strong {
+        min-width: auto; /* Alterado de 120px */
+        display: block;
+        margin-bottom: 3px; /* Adicionado para consistência com <480px */
+    }
 }
 @media (max-width: 480px) {
     body { font-size: 14px; }
@@ -525,4 +534,11 @@ footer::before {
 @keyframes fadeInCard {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Melhor feedback de foco para navegação via teclado */
+nav a:focus-visible {
+    outline: 2px dashed var(--color-red-pink);
+    outline-offset: 3px;
+    background-color: rgba(228, 51, 89, 0.08);
 }
