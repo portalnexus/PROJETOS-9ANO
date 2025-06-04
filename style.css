@@ -230,6 +230,35 @@ ol li::before {
 }
 .button-icon { font-size: 1.2em; }
 
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 28px; /* Adjusted for better visibility */
+    padding: 8px;
+    margin-left: 10px; /* Space from input or previous button */
+    cursor: pointer;
+    border-radius: 50%; /* Circular click feedback area */
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-flex; /* Align icon properly */
+    align-items: center; /* Align icon properly */
+    justify-content: center; /* Align icon properly */
+}
+.icon-button .material-symbols-outlined {
+    font-size: inherit; /* Icon inherits size from button font-size */
+    vertical-align: middle;
+}
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+    color: var(--color-yellow); /* Default hover color */
+}
+#saveChecklistButton.icon-button:hover {
+    color: var(--color-green); /* Save icon hover color */
+}
+#clearChecklistButton.icon-button:hover {
+    color: var(--color-red-pink); /* Clear icon hover color */
+}
+
 /* --- Estilos do Carrossel (Aproveitando melhor a tela) --- */
 .carousel-container {
     position: relative;
@@ -363,10 +392,23 @@ ol li::before {
     color: var(--text-medium); text-decoration: line-through; text-decoration-color: var(--color-red-pink);
 }
 
+.team-name-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input field and buttons */
+    margin-bottom: 25px; /* Overall margin for the container */
+}
+
 p.team-name-field {
-    background-color: rgba(247, 181, 0, 0.05); border: 1px dashed var(--color-yellow);
-    padding: 12px 15px; /* Mais padding */ border-radius: 5px; color: var(--color-yellow); margin-bottom: 25px;
-    display: flex; align-items: center;
+    background-color: rgba(247, 181, 0, 0.05);
+    border: 1px dashed var(--color-yellow);
+    padding: 12px 15px;
+    border-radius: 5px;
+    color: var(--color-yellow);
+    margin-bottom: 0; /* Removed margin as container handles it now */
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows the p tag containing label and input to grow */
 }
 p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; font-size: var(--font-size-md); }
 .input-team-name {
@@ -502,9 +544,9 @@ footer::before {
     .project-card p { font-size: 0.78rem; } /* Reduzido para telas menores */
     /* Ajuste para evitar empilhamento de texto em telas médias */
     .project-card p strong {
-        min-width: auto; /* Alterado de 120px */
+        min-width: auto;
         display: block;
-        margin-bottom: 3px; /* Adicionado para consistência com <480px */
+        margin-bottom: 3px;
     }
 }
 @media (max-width: 480px) {
@@ -521,7 +563,11 @@ footer::before {
     .project-card.carousel-item { padding: 20px; min-height: auto; /* Permite que a altura se ajuste ao conteúdo */ }
     .project-card h4 { font-size: 1rem; margin-bottom: 12px; }
     .project-card p { font-size: 0.75rem; line-height: 1.5; margin-bottom: 8px;}
-    .project-card p strong { min-width: auto; display: block; margin-bottom: 3px; } /* Labels em bloco */
+    .project-card p strong {
+        min-width: auto;
+        display: block;
+        margin-bottom: 3px;
+    } /* Labels em bloco */
     .quiz-container-cards { padding: 15px; }
     .question-card-active { padding: 15px; }
     .options label { padding: 10px; font-size: var(--font-size-xs, 0.75rem); }
