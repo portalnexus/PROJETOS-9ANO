@@ -214,9 +214,9 @@ ol li::before {
 .carousel-container {
     position: relative;
     width: 90%; /* Mantido, mas max-width aumentado */
-    max-width: 950px; /* Aumentado significativamente */
+    max-width: 1200px; /* Aumentado significativamente */
     margin: 45px auto; /* Mais margem */
-    padding: 0 65px; /* Espaço para botões laterais maiores */
+    padding: 0 50px; /* Espaço para botões laterais maiores */
     box-sizing: border-box;
 }
 .carousel-slider-wrapper {
@@ -235,7 +235,6 @@ ol li::before {
     background-color: var(--bg-dark-secondary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     border-radius: 8px;
-    min-height: 480px; /* Altura mínima para consistência, ajuste conforme necessário */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Distribui espaço se o conteúdo for menor */
@@ -455,14 +454,14 @@ footer::before {
 
 /* Responsividade Adicional */
 @media (max-width: 1024px) { /* Ajustes para tablets e telas menores */
-    .carousel-container { max-width: 90%; padding: 0 50px; }
+    .carousel-container { max-width: 95%; padding: 0 40px; }
     .project-card h4 { font-size: 1.1rem; }
     .project-card p { font-size: 0.825rem; }
 }
 
 @media (max-width: 768px) {
     nav a { margin: 5px; padding: 10px 12px; font-size: var(--font-size-md); }
-    .carousel-container { padding: 0 10px; max-width: 95%; }
+    .carousel-container { padding: 0; max-width: 100%; }
     .carousel-button { width: 45px; height: 45px; font-size: 22px; }
     .carousel-button.prev { left: -5px; }
     .carousel-button.next { right: -5px; }
@@ -482,7 +481,7 @@ footer::before {
     h3 { font-size: clamp(1.1em, 3vw, 1.6em); }
     .project-card { padding: 15px; }
     .button-quiz, .button-save { padding: 12px 20px; width: 90%; justify-content: center; font-size: var(--font-size-md);}
-    .carousel-container { max-width: 100%; padding: 0 40px; }
+    .carousel-container { max-width: 100%; padding: 0 20px; }
     .project-card.carousel-item { padding: 20px; min-height: auto; /* Permite que a altura se ajuste ao conteúdo */ }
     .project-card h4 { font-size: 1rem; margin-bottom: 12px; }
     .project-card p { font-size: 0.75rem; line-height: 1.5; margin-bottom: 8px;}
