@@ -133,7 +133,7 @@
                 </ul>
             </div>
             <!-- Old save button div removed -->
-            <p id="saveStatus" style="text-align:center; margin-top:15px; color: var(--color-green); font-size: var(--font-size-sm); height: 1.5em;"></p>
+            <p id="saveStatus" class="status-message"></p>
             <p class="final-encouragement">Parabéns pela organização! Com este checklist, sua equipe está no caminho certo para um ótimo projeto!</p>
         </section>
     </div>
@@ -186,11 +186,16 @@
             try {
                 localStorage.setItem(checklistAppId, JSON.stringify(checklistData));
                 saveStatusEl.textContent = "Progresso salvo com sucesso!";
+                saveStatusEl.className = 'status-message status-success';
             } catch (e) {
                 console.error("Erro ao salvar no localStorage:", e);
                 saveStatusEl.textContent = "Erro ao salvar. O armazenamento pode estar cheio.";
+                saveStatusEl.className = 'status-message status-error';
             }
-            setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
+            setTimeout(() => {
+                saveStatusEl.textContent = "";
+                saveStatusEl.className = 'status-message'; // Reset class
+            }, 3000);
         }
 
         function loadChecklistState() {
@@ -213,7 +218,11 @@
                 } catch (e) {
                     console.error("Erro ao carregar dados do checklist:", e);
                     saveStatusEl.textContent = "Erro ao carregar dados salvos.";
-                     setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
+                    saveStatusEl.className = 'status-message status-error';
+                     setTimeout(() => {
+                         saveStatusEl.textContent = "";
+                         saveStatusEl.className = 'status-message'; // Reset class
+                     }, 3000);
                 }
             }
         }
@@ -233,11 +242,16 @@
             try {
                 localStorage.removeItem(checklistAppId);
                 saveStatusEl.textContent = "Checklist limpo com sucesso!";
+                saveStatusEl.className = 'status-message status-success';
             } catch (e) {
                 console.error("Erro ao limpar o localStorage:", e);
                 saveStatusEl.textContent = "Erro ao limpar o checklist.";
+                saveStatusEl.className = 'status-message status-error';
             }
-            setTimeout(() => { saveStatusEl.textContent = ""; }, 3000);
+            setTimeout(() => {
+                saveStatusEl.textContent = "";
+                saveStatusEl.className = 'status-message'; // Reset class
+            }, 3000);
         }
 
         if (clearButton) {
