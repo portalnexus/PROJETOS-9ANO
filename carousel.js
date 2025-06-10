@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateItemWidthAndSlider() {
         const wrapper = document.querySelector('.carousel-slider-wrapper');
         if (wrapper) {
-            itemWidth = wrapper.offsetWidth; // Largura do item é a largura do wrapper
+            console.log("Carousel debug: wrapper.offsetWidth =", wrapper.offsetWidth, "totalItems =", totalItems);
+            itemWidth = wrapper.clientWidth; // Largura do item é a largura do wrapper
+            console.log("Carousel debug: itemWidth (from clientWidth) =", itemWidth);
+            if (itemWidth <= 0) { console.warn("Carousel warning: itemWidth is 0 or less. Carousel may not display correctly."); return; }
             // Ajusta a largura de cada item do carrossel para 100% do wrapper
             items.forEach(item => {
                 item.style.minWidth = `${itemWidth}px`;
