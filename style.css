@@ -20,18 +20,20 @@
 }
 
 :root {
-    --color-green: #77B923;
-    --color-yellow: #F7B500;
-    --color-orange: #F27D00;
-    --color-red-pink: #E43359;
-    --color-purple: #8F3E98;
+    /* New High-Contrast Palette */
+    --bg-dark-primary: #101010;
+    --bg-dark-secondary: #1C1C1C;
+    --text-light: #FFFFFF;
+    --text-medium: #CCCCCC;
+    --text-dark: #000000; /* For use on light/colored backgrounds */
 
-    --bg-dark-primary: #181A1B; /* Um pouco mais escuro */
-    --bg-dark-secondary: #25282A; /* Um pouco mais claro para contraste */
-    --text-light: #EAEAEA;
-    --text-medium: #B0B3B8;
+    --color-primary-accent: #00FFFF;  /* Cyan/Aqua */
+    --color-secondary-accent: #FF00FF; /* Magenta/Fuchsia */
+    --color-tertiary-accent: #FFFF00;  /* Yellow */
+    --color-action-positive: #00FF7F; /* Spring Green */
+    --color-action-negative: #FF4500;  /* OrangeRed */
 
-    /* Font Sizes - Hierarquia mais clara */
+    /* Font Sizes - Hierarquia mais clara (Keep existing font size variables) */
     --font-size-base: 16px;
     --font-size-xs: 0.75rem;   /* 12px - Para detalhes muito pequenos */
     --font-size-sm: 0.875rem;  /* 14px - Texto de parágrafo nos cards */
@@ -58,33 +60,35 @@ body {
     width: 95%;
     max-width: 1500px; /* Aumentado para telas largas */
     margin: 25px auto;
-    padding: 30px 35px; /* Mais padding horizontal */
+    padding: 35px 40px; /* Increased padding */
     background-color: var(--bg-dark-secondary);
-    border: 3px solid var(--color-purple);
-    box-shadow: 0 0 20px rgba(143, 62, 152, 0.35); /* Sombra um pouco mais forte */
-    border-radius: 10px; /* Um pouco menos arredondado */
+    border: 3px solid var(--color-primary-accent); /* Was --color-purple */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.25); /* Softened shadow */
+    border-radius: 10px;
     position: relative;
 }
 
 header {
     text-align: center;
-    padding: 40px 20px; /* Mais padding vertical */
-    border-bottom: 5px solid var(--color-orange); /* Borda mais grossa */
-    margin-bottom: 50px; /* Mais espaço */
-    background: linear-gradient(to bottom, #202225, var(--bg-dark-secondary));
+    padding: 45px 25px; /* Increased padding */
+    border-bottom: 5px solid var(--color-secondary-accent);
+    margin-bottom: 55px; /* Increased spacing */
+    background: linear-gradient(to bottom, var(--bg-dark-primary), var(--bg-dark-secondary));
     position: relative;
     overflow: hidden;
 }
 
 header h1 {
     font-size: var(--font-size-h1);
-    color: var(--color-yellow);
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.4); /* Sombra mais definida */
+    color: var(--color-tertiary-accent); /* Was --color-yellow */
+    /* Text on yellow background should be dark for contrast if this was a background. Here it's text color. */
+    /* If this were a background, it would be color: var(--text-dark); */
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5); /* Slightly stronger shadow */
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px; /* Mais espaço */
+    gap: 20px; /* Increased gap */
     position: relative;
     z-index: 1;
 }
@@ -92,106 +96,109 @@ header h1 {
 .icon-header {
     font-size: 1.05em; /* Relativo ao H1 */
     vertical-align: middle;
-    color: var(--color-yellow);
+    color: var(--color-tertiary-accent); /* Was --color-yellow */
 }
 
 nav {
     text-align: center;
-    margin-bottom: 50px;
-    padding: 18px 0; /* Mais padding */
-    background-color: rgba(0, 0, 0, 0.15);
+    margin-bottom: 55px; /* Increased spacing */
+    padding: 20px 0; /* Increased padding */
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darker background for nav */
     border-radius: 8px;
-    border-top: 3px solid var(--color-green); /* Borda mais grossa */
-    border-bottom: 3px solid var(--color-green);
+    border-top: 3px solid var(--color-primary-accent); /* Was --color-green */
+    border-bottom: 3px solid var(--color-primary-accent); /* Was --color-green */
 }
 
 nav a {
-    color: var(--color-green);
+    color: var(--color-primary-accent);
     text-decoration: none;
-    margin: 0 12px; /* Mais espaço */
+    margin: 0 15px; /* Increased margin */
     font-size: var(--font-size-lg);
-    padding: 14px 20px; /* Mais padding */
+    padding: 16px 22px; /* Increased padding for larger click target */
     border: 2px solid transparent;
     border-radius: 6px;
     transition: all 0.25s ease-in-out;
     display: inline-flex;
     align-items: center;
-    gap: 10px; /* Mais espaço */
+    gap: 12px; /* Increased gap */
     position: relative;
 }
 nav a::before {
     content: ''; position: absolute; bottom: 0px; left: 50%;
     transform: translateX(-50%); width: 0; height: 3px;
-    background-color: var(--color-red-pink); transition: width 0.25s ease-in-out;
+    background-color: var(--color-secondary-accent); /* Was --color-red-pink */ transition: width 0.25s ease-in-out;
 }
 nav a:hover::before, nav a:focus::before { width: 80%; }
 nav a:hover, nav a:focus {
-    color: var(--color-red-pink); background-color: rgba(228, 51, 89, 0.05);
+    color: var(--color-secondary-accent); background-color: rgba(255, 0, 255, 0.05); /* Was --color-red-pink based */
     transform: translateY(-1px);
     text-decoration: none !important;
 }
 .nav-icon { font-size: 1.2em; }
 
 h2 {
-    color: var(--color-red-pink); text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-    border-bottom: 3px solid var(--color-red-pink); padding-bottom: 15px; /* Mais padding */
-    margin-top: 45px; margin-bottom: 35px; /* Mais espaço */
+    color: var(--color-secondary-accent); text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+    border-bottom: 3px solid var(--color-secondary-accent); padding-bottom: 18px;
+    margin-top: 50px; margin-bottom: 40px; /* Increased margins */
     font-size: var(--font-size-xxl);
-    display: flex; align-items: center; gap: 12px; /* Mais espaço */
+    display: flex; align-items: center; gap: 14px; /* Increased gap */
 }
 
 h3 {
-    color: var(--color-orange); text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
-    margin-top: 35px; margin-bottom: 25px; /* Mais espaço */
+    color: var(--color-secondary-accent); text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+    margin-top: 40px; margin-bottom: 30px; /* Increased margins */
     font-size: var(--font-size-xl);
-    display: flex; align-items: center; gap: 10px; /* Mais espaço */
-    border-bottom: 2px dashed var(--color-orange); padding-bottom: 12px; /* Mais padding */
+    display: flex; align-items: center; gap: 12px; /* Increased gap */
+    border-bottom: 2px dashed var(--color-secondary-accent); padding-bottom: 14px;
 }
 p.intro-text {
-    color: var(--text-medium); text-align: center; margin-bottom: 35px; /* Mais espaço */
-    font-size: var(--font-size-lg); line-height: 1.75; /* Melhorado */
+    color: var(--text-medium); text-align: center; margin-bottom: 40px; /* Increased margin */
+    font-size: var(--font-size-lg); line-height: 1.8; /* Slightly increased line-height */
 }
 p.final-encouragement {
-    color: var(--color-yellow); text-align: center; margin-top: 35px; /* Mais espaço */
+    color: var(--color-tertiary-accent); text-align: center; margin-top: 40px; /* Increased margin */
     font-size: var(--font-size-lg);
 }
 
 .section-icon, .subsection-icon, .tip-icon, .card-icon, .footer-icon, .question-icon, .result-icon, .projects-icon, .list-icon, .carousel-icon, .save-icon {
     font-size: 1.25em; /* Ícones maiores */
-    vertical-align: middle; margin-right: 10px; /* Mais espaço */
+    vertical-align: middle; margin-right: 12px; /* Increased margin */
 }
-.save-icon { color: var(--color-green); }
-.tip-icon { color: var(--color-yellow); }
-.card-icon { color: var(--color-green); }
-.question-icon { color: var(--color-yellow); }
-.result-icon { color: var(--color-yellow); }
-.projects-icon { color: var(--color-orange); }
-.list-icon { font-size: 1em; color: var(--color-green); } /* Aumentado */
-.carousel-icon { color: var(--color-orange); }
+.save-icon { color: var(--color-action-positive); }
+.tip-icon { color: var(--color-tertiary-accent); }
+.card-icon { color: var(--color-primary-accent); }
+.question-icon { color: var(--color-tertiary-accent); }
+.result-icon { color: var(--color-tertiary-accent); }
+.projects-icon { color: var(--color-secondary-accent); }
+.list-icon { font-size: 1em; color: var(--color-primary-accent); }
+.carousel-icon { color: var(--color-secondary-accent); }
 
 p, li {
     color: var(--text-light); font-size: var(--font-size-md);
-    margin-bottom: 14px; /* Mais espaço */
+    margin-bottom: 16px; /* Increased margin */
+    line-height: 1.8; /* Consistent line-height for p and li */
 }
 
-ul, ol { padding-left: 35px; /* Mais recuo */ }
+ul, ol { padding-left: 40px; /* Increased indent */ }
 ul { list-style-type: none; }
 ul li::before {
-    content: '❖'; color: var(--color-green); font-size: 1em; /* Aumentado */
-    margin-right: 14px; display: inline-block; /* Mais espaço */
+    content: '❖'; color: var(--color-primary-accent); font-size: 1.1em; /* Slightly larger icon */
+    margin-right: 16px; display: inline-block; /* Increased spacing */
 }
 ol { list-style-type: none; counter-reset: step-counter; }
 ol li {
-    margin-bottom: 12px; counter-increment: step-counter;
-    position: relative; padding-left: 45px; /* Mais espaço */
+    margin-bottom: 14px; /* Increased margin */ counter-increment: step-counter;
+    position: relative; padding-left: 50px; /* Increased padding for number */
 }
 ol li::before {
-    content: counter(step-counter); position: absolute; left: 0; top: -1px; /* Ajuste vertical */
-    color: var(--bg-dark-secondary); background-color: var(--color-purple);
-    border: 2px solid var(--color-purple); border-radius: 50%;
-    width: 30px; height: 30px; /* Maior */
+    content: counter(step-counter); position: absolute; left: 0; top: 0px; /* Adjusted top for better alignment */
+    color: var(--text-dark);
+    background-color: var(--color-primary-accent);
+    border: 2px solid var(--color-primary-accent);
+    border-radius: 50%;
+    width: 32px; height: 32px; /* Slightly larger */
     display: inline-flex; align-items: center; justify-content: center;
-    line-height: 1; font-size: 0.9em;
+    line-height: 1; font-size: var(--font-size-sm); /* Using font variable */
 }
 
 .hero-action { text-align: center; margin: 40px 0; /* Mais espaço */ }
@@ -203,32 +210,38 @@ ol li::before {
     text-shadow: 1px 1px 1px rgba(0,0,0,0.2); position: relative;
 }
 .button-quiz {
-    background: var(--color-purple);
-    box-shadow: 0 4px 0px darken(var(--color-purple), 15%), 0 6px 10px rgba(0,0,0,0.2);
+    background: var(--color-primary-accent);
+    color: var(--text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 0px rgba(0, 204, 204, 0.8); /* Adjusted shadow */
 }
 .button-quiz:hover {
-    background: lighten(var(--color-purple), 5%);
-    box-shadow: 0 3px 0px darken(var(--color-purple), 10%), 0 5px 8px rgba(0,0,0,0.25);
-    transform: translateY(-1px);
+    background: rgba(0, 230, 230, 1);
+    color: var(--text-dark);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 3px 0px rgba(0, 179, 179, 0.8);
+    transform: translateY(-2px); /* Increased hover effect */
     text-decoration: none !important;
 }
 .button-quiz:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 0px darken(var(--color-purple), 15%), 0 2px 3px rgba(0,0,0,0.3);
+    transform: translateY(1px); /* Consistent active effect */
+    color: var(--text-dark);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 0px rgba(0, 204, 204, 0.8);
 }
 .button-save {
-    background: var(--color-green);
-    box-shadow: 0 4px 0px darken(var(--color-green), 15%), 0 6px 10px rgba(0,0,0,0.2);
-    margin-top: 25px; /* Mais espaço */
+    background: var(--color-action-positive);
+    color: var(--text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 0px rgba(0, 204, 102, 0.8); /* Adjusted shadow */
+    margin-top: 25px;
 }
 .button-save:hover {
-    background: lighten(var(--color-green), 5%);
-    box-shadow: 0 3px 0px darken(var(--color-green), 10%), 0 5px 8px rgba(0,0,0,0.25);
-    transform: translateY(-1px);
+    background: rgba(0, 230, 118, 1);
+    color: var(--text-dark);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 3px 0px rgba(0, 179, 88, 0.8);
+    transform: translateY(-2px); /* Increased hover effect */
 }
 .button-save:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 0px darken(var(--color-green), 15%), 0 2px 3px rgba(0,0,0,0.3);
+    transform: translateY(1px); /* Consistent active effect */
+    color: var(--text-dark);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 0px rgba(0, 204, 102, 0.8);
 }
 .button-icon { font-size: 1.2em; }
 
@@ -237,161 +250,171 @@ ol li::before {
     border: none;
     color: var(--text-light);
     font-size: 28px; /* Adjusted for better visibility */
-    padding: 8px;
-    margin-left: 10px; /* Space from input or previous button */
+    padding: 10px; /* Increased padding */
+    margin-left: 12px; /* Increased margin */
     cursor: pointer;
-    border-radius: 50%; /* Circular click feedback area */
-    transition: background-color 0.2s, color 0.2s;
-    display: inline-flex; /* Align icon properly */
-    align-items: center; /* Align icon properly */
-    justify-content: center; /* Align icon properly */
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .icon-button .material-symbols-outlined {
-    font-size: inherit; /* Icon inherits size from button font-size */
+    font-size: inherit;
     vertical-align: middle;
 }
 .icon-button:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
-    color: var(--color-yellow); /* Default hover color */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly more visible hover */
+    color: var(--color-tertiary-accent);
+    transform: scale(1.1); /* Add scale effect */
 }
 #saveChecklistButton.icon-button:hover {
-    color: var(--color-green); /* Save icon hover color */
+    color: var(--color-action-positive);
 }
 #clearChecklistButton.icon-button:hover {
-    color: var(--color-red-pink); /* Clear icon hover color */
+    color: var(--color-action-negative);
 }
 
 /* --- Estilos do Carrossel (Aproveitando melhor a tela) --- */
 .carousel-container {
     position: relative;
     width: 90%; /* Mantido, mas max-width aumentado */
-    max-width: 1200px; /* Aumentado significativamente */
-    margin: 45px auto; /* Mais margem */
-    padding: 0 50px; /* Espaço para botões laterais maiores */
+    max-width: 1200px;
+    margin: 50px auto; /* Increased margin */
+    padding: 0 55px; /* Increased padding for buttons */
     box-sizing: border-box;
 }
 .carousel-slider-wrapper {
     width: 100%;
     overflow: hidden;
-    border: 3px solid var(--color-orange);
+    border: 3px solid var(--color-secondary-accent);
     border-radius: 10px;
-    background: rgba(0,0,0, 0.1);
-    padding: 25px 0; /* Mais padding vertical */
+    background: rgba(0,0,0, 0.15); /* Slightly darker */
+    padding: 30px 0; /* Increased padding */
 }
 .carousel-slider { display: flex; transition: transform 0.4s ease-in-out; }
 .project-card.carousel-item {
     min-width: 100%; max-width: 100%; flex: 0 0 100%;
-    box-sizing: border-box; padding: 30px 35px; /* Mais padding horizontal */
-    border: 2px solid var(--color-green);
+    box-sizing: border-box; padding: 35px 40px; /* Increased padding */
+    border: 2px solid var(--color-primary-accent);
     background-color: var(--bg-dark-secondary);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25); /* Slightly stronger shadow */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribui espaço se o conteúdo for menor */
+    justify-content: space-between;
 }
 .project-card.carousel-item:hover {
-    border-color: var(--color-yellow); transform: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border-color: var(--color-tertiary-accent); transform: none;
+    box-shadow: 0 5px 15px rgba(255, 255, 0, 0.2); /* Yellow glow on hover */
 }
 .project-card h4 {
-    color: var(--color-yellow); margin-top: 0; margin-bottom: 20px;
-    font-size: var(--font-size-h4-card); /* Usando variável */
-    border-bottom: 2px dashed var(--color-yellow); padding-bottom: 12px;
-    line-height: 1.4;
+    color: var(--color-tertiary-accent); margin-top: 0; margin-bottom: 22px; /* Increased margin */
+    font-size: var(--font-size-h4-card);
+    border-bottom: 2px dashed var(--color-tertiary-accent); padding-bottom: 14px; /* Increased padding */
+    line-height: 1.5; /* Improved line height */
     overflow-wrap: break-word;
     word-wrap: break-word; /* fallback mais antigo */
 }
 .project-card p {
-    font-size: var(--font-size-sm); /* Usando variável */
-    line-height: 1.65; display: flex; align-items: flex-start;
-    gap: 10px; /* Mais espaço */ margin-bottom: 12px;
+    font-size: var(--font-size-sm);
+    line-height: 1.7; /* Improved line height */ display: flex; align-items: flex-start;
+    gap: 12px; /* Increased gap */ margin-bottom: 14px; /* Increased margin */
     overflow-wrap: break-word;
-    word-wrap: break-word; /* fallback mais antigo */
+    word-wrap: break-word;
 }
 .project-card p strong {
-    color: var(--color-orange); min-width: 150px; /* Aumentado */
-    display: inline-block; font-size: 0.95em; margin-right: 8px; /* Mais espaço */
+    color: var(--color-secondary-accent); min-width: 150px;
+    display: inline-block; font-size: 0.95em; margin-right: 10px; /* Increased margin */
 }
 /* Estilo para ícones dentro dos parágrafos dos cards de projeto */
 .project-card p .material-symbols-outlined {
-    color: var(--color-green);
-    font-size: 1.25em; /* Correspondendo ao estilo anterior que vinha de .card-icon na regra geral */
-    vertical-align: middle; /* Correspondendo ao estilo anterior */
-    margin-right: 10px; /* Correspondendo ao estilo anterior */
+    color: var(--color-primary-accent);
+    font-size: 1.25em;
+    vertical-align: middle;
+    margin-right: 12px; /* Increased margin */
 }
 .carousel-button {
     position: absolute; top: 50%; transform: translateY(-50%);
-    background-color: var(--color-orange); color: var(--bg-dark-primary);
+    background-color: var(--color-secondary-accent); color: var(--text-dark);
     border: none; border-radius: 50%;
-    width: 55px; height: 55px; /* Maiores */
-    font-size: 28px; cursor: pointer; z-index: 10;
+    width: 60px; height: 60px; /* Slightly larger buttons */
+    font-size: 30px; /* Larger icon */ cursor: pointer; z-index: 10;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35); transition: all 0.2s ease-in-out; /* Smoother transition */
 }
 .carousel-button:hover {
-    background-color: lighten(var(--color-orange), 10%);
-    transform: translateY(-50%) scale(1.05);
+    background-color: rgba(255, 51, 255, 1);
+    color: var(--text-dark);
+    transform: translateY(-50%) scale(1.1); /* More pronounced hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 .carousel-button:disabled {
-    background-color: #555; color: #888; box-shadow: none; cursor: not-allowed; opacity: 0.6;
+    background-color: #444; color: #777; box-shadow: none; cursor: not-allowed; opacity: 0.5; /* Adjusted disabled state */
 }
-.carousel-button.prev { left: 0px; } /* Ajustado */
-.carousel-button.next { right: 0px; }
-.carousel-dots { text-align: center; margin-top: 30px; /* Mais espaço */ }
+.carousel-button.prev { left: -5px; } /* Adjusted position */
+.carousel-button.next { right: -5px; } /* Adjusted position */
+.carousel-dots { text-align: center; margin-top: 35px; /* Increased margin */ }
 .carousel-dot {
-    display: inline-block; width: 16px; height: 16px; /* Maiores */
-    background-color: rgba(242, 125, 0, 0.3);
-    border: 2px solid var(--color-orange);
-    border-radius: 50%; margin: 0 6px; cursor: pointer;
-    transition: all 0.25s ease;
+    display: inline-block; width: 18px; height: 18px; /* Larger dots */
+    background-color: rgba(255, 0, 255, 0.25);
+    border: 2px solid var(--color-secondary-accent);
+    border-radius: 50%; margin: 0 8px; /* Increased spacing */ cursor: pointer;
+    transition: all 0.2s ease-in-out; /* Smoother transition */
 }
 .carousel-dot.active {
-    background-color: var(--color-orange); transform: scale(1.25); /* Maior destaque */
-    box-shadow: 0 0 10px var(--color-orange);
+    background-color: var(--color-secondary-accent); transform: scale(1.3);
+    box-shadow: 0 0 12px var(--color-secondary-accent);
 }
 
 /* --- Estilos para as páginas de Roteiro e Checklist --- */
-.page-content-container .container { max-width: 1000px; }
+.page-content-container .container { max-width: 1000px; margin-top: 30px; margin-bottom: 30px; } /* Added top/bottom margin */
 .step-card {
-    background: linear-gradient(135deg, lighten(var(--bg-dark-secondary), 5%), var(--bg-dark-secondary));
-    border: 2px solid; padding: 25px 30px; margin-bottom: 30px;
-    border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: linear-gradient(145deg, lighten(var(--bg-dark-secondary), 3%), var(--bg-dark-secondary)); /* Adjusted gradient */
+    border: 2px solid; padding: 30px 35px; margin-bottom: 35px; /* Increased padding/margin */
+    border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.25); /* Adjusted shadow/radius */
     animation: fadeInCard 0.5s ease-out; position: relative; overflow: hidden;
 }
 .step-card > * { position: relative; z-index: 1; }
-#roteiro-detalhado .step-card { border-color: var(--color-green); }
-#roteiro-detalhado .step-card h3 { color: var(--color-green); border-bottom-color: var(--color-green); }
+#roteiro-detalhado .step-card { border-color: var(--color-primary-accent); }
+#roteiro-detalhado .step-card h3 { color: var(--color-primary-accent); border-bottom-color: var(--color-primary-accent); }
 #roteiro-detalhado .step-card ol li::before {
-    color: var(--bg-dark-secondary); background-color: var(--color-green); border-color: var(--color-green);
+    color: var(--text-dark); background-color: var(--color-primary-accent); border-color: var(--color-primary-accent);
 }
-#checklist-detalhado .step-card { border-color: var(--color-red-pink); }
-#checklist-detalhado .step-card h3 { color: var(--color-red-pink); border-bottom-color: var(--color-red-pink); }
+#checklist-detalhado .step-card { border-color: var(--color-secondary-accent); }
+#checklist-detalhado .step-card h3 { color: var(--color-secondary-accent); border-bottom-color: var(--color-secondary-accent); }
 
-/* Unificando estilo dos checkboxes para Laranja */
+/* Unificando estilo dos checkboxes para new accent */
+#checklist-detalhado ul.checklist-list > li,
+#checklist-detalhado ul.checklist-list ul li,
+#checklist-detalhado ul.checklist-list ul ul li {
+    cursor: pointer; /* Make whole list item clickable */
+    padding: 5px 0; /* Add some padding for easier clicking */
+}
 #checklist-detalhado ul.checklist-list > li::before,
 #checklist-detalhado ul.checklist-list ul li::before,
 #checklist-detalhado ul.checklist-list ul ul li::before {
     content: var(--marker-content, '☐');
-    color: var(--color-orange); /* Cor Laranja para a caixa e ícone padrão */
-    font-size: 1.25em; /* Aumentado */
-    margin-right: 14px; /* Mais espaço */
-    border: 2px solid var(--color-orange); /* Borda mais grossa */
-    border-radius: 4px; /* Menos arredondado */
-    width: 20px; /* Aumentado */
-    height: 20px; /* Aumentado */
+    color: var(--color-secondary-accent);
+    font-size: 1.3em; /* Slightly larger checkbox */
+    margin-right: 16px; /* Increased spacing */
+    border: 2px solid var(--color-secondary-accent);
+    border-radius: 4px;
+    width: 22px; /* Slightly larger */
+    height: 22px; /* Slightly larger */
     display: inline-flex; align-items: center; justify-content: center; line-height: 1;
-    background-color: rgba(242, 125, 0, 0.1); /* Fundo laranja suave */
+    background-color: rgba(255, 0, 255, 0.1);
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 #checklist-detalhado ul.checklist-list li.checked::before {
-    content: var(--marker-content, '☑');
-    background-color: var(--color-orange); /* Fundo preenchido quando marcado */
-    color: var(--bg-dark-secondary); /* Cor do check contrastante */
-    border-color: var(--color-orange);
+    content: var(--marker-content, '☑'); /* Using actual check character for better visuals if font supports it */
+    background-color: var(--color-secondary-accent);
+    color: var(--text-dark);
+    border-color: var(--color-secondary-accent);
 }
 #checklist-detalhado ul.checklist-list li.checked {
-    color: var(--text-medium); text-decoration: line-through; text-decoration-color: var(--color-red-pink);
+    color: var(--text-medium); text-decoration: line-through; text-decoration-color: var(--color-action-negative);
+    text-decoration-thickness: 2px; /* Make strikethrough more visible */
 }
 
 .team-name-container {
@@ -402,73 +425,74 @@ ol li::before {
 }
 
 p.team-name-field {
-    background-color: rgba(247, 181, 0, 0.05);
-    border: 1px dashed var(--color-yellow);
-    padding: 12px 15px;
-    border-radius: 5px;
-    color: var(--color-yellow);
-    margin-bottom: 0; /* Removed margin as container handles it now */
+    background-color: rgba(255, 255, 0, 0.08); /* Slightly more prominent background */
+    border: 1px dashed var(--color-tertiary-accent);
+    padding: 14px 18px; /* Increased padding */
+    border-radius: 6px; /* Consistent radius */
+    color: var(--color-tertiary-accent);
+    margin-bottom: 0;
     display: flex;
     align-items: center;
-    flex-grow: 1; /* Allows the p tag containing label and input to grow */
+    flex-grow: 1;
 }
-p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; font-size: var(--font-size-md); }
+p.team-name-field strong { color: var(--color-tertiary-accent); margin-right: 12px; font-size: var(--font-size-md); }
 .input-team-name {
-    background-color: rgba(0,0,0,0.2); border: 1px solid var(--color-yellow); color: var(--color-yellow);
-    font-family: 'Press Start 2P', cursive; padding: 10px; /* Mais padding */ border-radius: 4px;
-    flex-grow: 1; box-shadow: 0 0 5px rgba(247, 181, 0, 0.3) inset;
+    background-color: rgba(0,0,0,0.25); border: 1px solid var(--color-tertiary-accent); color: var(--color-tertiary-accent);
+    font-family: 'Press Start 2P', cursive; padding: 12px; /* Increased padding */ border-radius: 4px;
+    flex-grow: 1; box-shadow: 0 0 8px rgba(255, 255, 0, 0.25) inset; /* Adjusted shadow */
     font-size: var(--font-size-sm);
 }
-.input-team-name::placeholder { color: rgba(247, 181, 0, 0.4); }
-.step-card ul { padding-left: 15px; }
-.step-card strong { color: var(--color-yellow); }
+.input-team-name::placeholder { color: rgba(204, 204, 0, 0.6); } /* Adjusted placeholder opacity */
+.step-card ul { padding-left: 20px; /* Consistent with other list changes */ }
+.step-card strong { color: var(--color-tertiary-accent); }
 .tips-card {
-    border-color: var(--color-yellow);
-    background: linear-gradient(135deg, lighten(var(--bg-dark-secondary),3%), var(--bg-dark-secondary));
+    border-color: var(--color-tertiary-accent);
+    background: linear-gradient(145deg, lighten(var(--bg-dark-secondary),2%), var(--bg-dark-secondary)); /* Adjusted gradient */
 }
-.tips-card h4 { color: var(--color-yellow); border-bottom-color: var(--color-yellow); font-size: var(--font-size-xl); }
-.tips-card p { color: var(--text-light); }
+.tips-card h4 { color: var(--color-tertiary-accent); border-bottom-color: var(--color-tertiary-accent); font-size: var(--font-size-xl); }
+.tips-card p { color: var(--text-light); line-height: 1.8; } /* Consistent line height */
 .schedule-table {
-    width: 100%; margin-top: 20px; border-collapse: separate; border-spacing: 0;
-    border: 2px solid var(--color-orange); box-shadow: 0 0 8px rgba(242, 125, 0, 0.3); border-radius: 6px;
+    width: 100%; margin-top: 25px; border-collapse: separate; border-spacing: 0; /* Increased margin */
+    border: 2px solid var(--color-secondary-accent); box-shadow: 0 0 10px rgba(255, 0, 255, 0.25); border-radius: 8px; /* Adjusted shadow/radius */
 }
 .schedule-table th, .schedule-table td {
-    border-bottom: 1px solid var(--color-orange); padding: 12px; text-align: left; font-size: var(--font-size-sm);
+    border-bottom: 1px solid var(--color-secondary-accent); padding: 14px; text-align: left; font-size: var(--font-size-sm); /* Increased padding */
 }
-.schedule-table th { background-color: rgba(242, 125, 0, 0.2); color: var(--color-orange); }
+.schedule-table th { background-color: rgba(255, 0, 255, 0.15); color: var(--color-secondary-accent); } /* Adjusted background */
 .schedule-table td { background-color: transparent; color: var(--text-light); }
 .schedule-table tr:last-child td { border-bottom: none; }
-.schedule-table td .material-symbols-outlined { color: var(--color-yellow); vertical-align: middle; font-size: 1.2em; }
+.schedule-table td .material-symbols-outlined { color: var(--color-tertiary-accent); vertical-align: middle; font-size: 1.2em; margin-right: 5px; } /* Added margin */
 
 /* --- Estilos para o Jogo dos Quatro Cantos --- */
-.quiz-page-container .container { max-width: 900px; }
-.quiz-container-cards { background-color: var(--bg-dark-secondary); padding: 25px; border-radius: 10px; }
-.quiz-container-cards h2 { text-align: center; color: var(--color-purple); font-size: var(--font-size-xxl); }
-.quiz-instructions { text-align: center; margin-bottom: 30px; color: var(--color-purple); font-size: var(--font-size-md); }
+.quiz-page-container .container { max-width: 900px; margin-top: 30px; margin-bottom: 30px; } /* Added top/bottom margin */
+.quiz-container-cards { background-color: var(--bg-dark-secondary); padding: 30px; border-radius: 10px; } /* Increased padding */
+.quiz-container-cards h2 { text-align: center; color: var(--color-primary-accent); font-size: var(--font-size-xxl); }
+.quiz-instructions { text-align: center; margin-bottom: 35px; color: var(--color-primary-accent); font-size: var(--font-size-md); line-height: 1.8; } /* Increased margin & line height */
 .question-card-active {
-    margin-bottom: 25px; padding: 25px; background-color: lighten(var(--bg-dark-secondary), 5%);
-    border-radius: 8px; border: 2px solid var(--color-red-pink);
-    box-shadow: 0 0 12px rgba(228, 51, 89, 0.4); animation: fadeInCard 0.5s ease-in-out;
+    margin-bottom: 30px; padding: 30px; background-color: lighten(var(--bg-dark-secondary), 4%); /* Adjusted padding/margin/bg */
+    border-radius: 10px; border: 2px solid var(--color-secondary-accent);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.35); animation: fadeInCard 0.5s ease-in-out;
 }
 .question-card-active p {
-    color: var(--color-yellow); font-size: var(--font-size-lg); margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
+    color: var(--color-tertiary-accent); font-size: var(--font-size-lg); margin-bottom: 25px; /* Increased margin */
+    display: flex; align-items: center; gap: 12px; /* Increased gap */
+    line-height: 1.6; /* Specific line-height for question */
 }
 .options label {
-    display: block; margin-bottom: 12px; padding: 15px; background-color: lighten(var(--bg-dark-primary), 10%);
-    border-radius: 6px; cursor: pointer; transition: all 0.25s ease; color: var(--text-light);
-    border: 1px solid #444; font-size: var(--font-size-sm);
+    display: block; margin-bottom: 14px; padding: 18px; background-color: lighten(var(--bg-dark-primary), 8%); /* Adjusted padding/bg */
+    border-radius: 8px; cursor: pointer; transition: all 0.2s ease-in-out; color: var(--text-light); /* Smoother transition */
+    border: 1px solid #555; font-size: var(--font-size-sm); /* Darker border */
 }
 .options label:hover {
-    background-color: lighten(var(--bg-dark-primary), 15%); transform: translateX(5px);
-    border-color: var(--color-green); box-shadow: 0 0 8px rgba(119, 185, 35, 0.5);
+    background-color: lighten(var(--bg-dark-primary), 12%); transform: translateX(6px); /* Adjusted hover */
+    border-color: var(--color-action-positive); box-shadow: 0 0 10px rgba(0, 255, 127, 0.4);
 }
 .options input[type="radio"] {
-    margin-right: 12px; accent-color: var(--color-green); transform: scale(1.3); vertical-align: middle;
+    margin-right: 14px; accent-color: var(--color-action-positive); transform: scale(1.35); vertical-align: middle; /* Slightly larger radio */
 }
 .quiz-navigation-controls {
     display: flex; justify-content: space-between; align-items: center;
-    margin-top: 30px; padding-top: 20px; border-top: 2px dashed var(--color-purple);
+    margin-top: 35px; padding-top: 25px; border-top: 2px dashed var(--color-primary-accent); /* Increased spacing */
 }
 .quiz-nav-button {
     color: var(--text-light); padding: 12px 20px; font-size: var(--font-size-md);
@@ -476,56 +500,86 @@ p.team-name-field strong { color: var(--color-yellow); margin-right: 10px; font-
     border-radius: 6px; cursor: pointer; transition: all 0.25s ease;
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     min-width: 130px;
-    box-shadow: 0 3px 0px darken(currentColor, 20%), 0 5px 8px rgba(0,0,0,0.2);
     position: relative;
 }
 .quiz-nav-button .button-icon { font-size: 1.2em; }
-#prev-question { background-color: var(--color-orange); box-shadow: 0 3px 0px darken(var(--color-orange), 15%), 0 5px 8px rgba(0,0,0,0.2); }
-#prev-question:hover:not(:disabled) { background-color: lighten(var(--color-orange), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-orange),10%), 0 6px 9px rgba(0,0,0,0.25); }
-#next-question { background-color: var(--color-green); box-shadow: 0 3px 0px darken(var(--color-green), 15%), 0 5px 8px rgba(0,0,0,0.2); }
-#next-question:hover:not(:disabled) { background-color: lighten(var(--color-green), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-green),10%), 0 6px 9px rgba(0,0,0,0.25); }
-#submit-quiz-final { background-color: var(--color-red-pink); box-shadow: 0 3px 0px darken(var(--color-red-pink), 15%), 0 5px 8px rgba(0,0,0,0.2); }
-#submit-quiz-final:hover:not(:disabled) { background-color: lighten(var(--color-red-pink), 10%); transform: translateY(-1px); box-shadow: 0 4px 0px darken(var(--color-red-pink),10%), 0 6px 9px rgba(0,0,0,0.25); }
-.quiz-nav-button:disabled {
-    background-color: #444; color: #888; cursor: not-allowed; opacity: 0.7;
-    box-shadow: 0 2px 0px #333, 0 3px 5px rgba(0,0,0,0.2);
+/* Consistent shadows and hover/active for nav buttons */
+#prev-question {
+    background-color: var(--color-secondary-accent); color: var(--text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 0px rgba(204, 0, 204, 0.8);
 }
-.quiz-nav-button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0px darken(currentColor, 20%), 0 2px 3px rgba(0,0,0,0.3); }
+#prev-question:hover:not(:disabled) {
+    background-color: rgba(255, 51, 255, 1);
+    color: var(--text-dark);
+    transform: translateY(-2px); /* Consistent hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 3px 0px rgba(204, 0, 204, 0.8);
+}
+#next-question {
+    background-color: var(--color-action-positive); color: var(--text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 0px rgba(0, 204, 102, 0.8);
+}
+#next-question:hover:not(:disabled) {
+    background-color: rgba(0, 230, 118, 1);
+    color: var(--text-dark);
+    transform: translateY(-2px); /* Consistent hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 3px 0px rgba(0, 179, 88, 0.8);
+}
+#submit-quiz-final {
+    background-color: var(--color-action-negative); color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 0px rgba(204, 51, 0, 0.8);
+}
+#submit-quiz-final:hover:not(:disabled) {
+    background-color: rgba(255, 102, 51, 1);
+    color: var(--text-light);
+    transform: translateY(-2px); /* Consistent hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 3px 0px rgba(204, 51, 0, 0.8);
+}
+.quiz-nav-button:disabled {
+    background-color: #444; color: #777; cursor: not-allowed; opacity: 0.6; /* Adjusted disabled state */
+    box-shadow: 0 2px 0px #333, 0 3px 5px rgba(0,0,0,0.15); /* Softer disabled shadow */
+}
+.quiz-nav-button:active:not(:disabled) {
+    transform: translateY(1px); /* Consistent active effect */
+}
+#prev-question:active:not(:disabled) { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 0px rgba(204, 0, 204, 0.8); }
+#next-question:active:not(:disabled) { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 0px rgba(0, 204, 102, 0.8); }
+#submit-quiz-final:active:not(:disabled) { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 0px rgba(204, 51, 0, 0.8); }
+
 
 #quiz-result {
-    margin-top: 40px; padding: 30px; background-color: var(--bg-dark-secondary); border-radius: 8px;
-    border: 3px solid var(--color-yellow); box-shadow: 0 0 15px rgba(247, 181, 0, 0.4);
+    margin-top: 45px; padding: 35px; background-color: var(--bg-dark-secondary); border-radius: 10px; /* Increased spacing/radius */
+    border: 3px solid var(--color-tertiary-accent); box-shadow: 0 0 18px rgba(255, 255, 0, 0.35);
     animation: fadeInCard 0.6s ease-in-out;
 }
 #quiz-result h3 {
-    color: var(--color-yellow); text-align: center; font-size: var(--font-size-xl); margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--color-tertiary-accent); text-align: center; font-size: var(--font-size-xl); margin-bottom: 25px;
+    display: flex; align-items: center; justify-content: center; gap: 12px; /* Increased gap */
 }
-#quiz-result p { color: var(--text-light); font-size: var(--font-size-md); margin-bottom: 15px; text-align: center; }
+#quiz-result p { color: var(--text-light); font-size: var(--font-size-md); margin-bottom: 18px; text-align: center; line-height: 1.8; } /* Consistent line-height */
 #quiz-result ul { padding-left: 0; list-style-type: none; }
 #quiz-result ul li {
-    background-color: lighten(var(--bg-dark-primary), 5%); padding: 10px 15px; border-radius: 5px; margin-bottom: 10px;
-    border-left: 4px solid var(--color-green); font-size: var(--font-size-sm);
-    display: flex; align-items: center; gap: 8px;
+    background-color: lighten(var(--bg-dark-primary), 6%); padding: 12px 18px; border-radius: 6px; margin-bottom: 12px; /* Adjusted style */
+    border-left: 5px solid var(--color-action-positive); font-size: var(--font-size-sm);
+    display: flex; align-items: center; gap: 10px; /* Increased gap */
 }
-.result-profile { color: var(--color-green); }
+.result-profile { color: var(--color-action-positive); }
 .result-projects-title {
-    color: var(--color-orange); margin-top: 25px; margin-bottom: 15px; display: block; text-align: center;
-    font-size: var(--font-size-lg); display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--color-secondary-accent); margin-top: 30px; margin-bottom: 20px; display: block; text-align: center; /* Adjusted spacing */
+    font-size: var(--font-size-lg); display: flex; align-items: center; justify-content: center; gap: 12px; /* Increased gap */
 }
 
 footer {
-    text-align: center; padding: 25px; margin-top: 40px; border-top: 3px solid var(--color-purple);
-    color: var(--color-purple); font-size: var(--font-size-sm); background-color: var(--bg-dark-primary);
-    display: flex; align-items: center; justify-content: center; gap: 8px;
+    text-align: center; padding: 30px; margin-top: 50px; border-top: 3px solid var(--color-primary-accent); /* Increased spacing */
+    color: var(--color-primary-accent); font-size: var(--font-size-sm); background-color: var(--bg-dark-primary);
+    display: flex; align-items: center; justify-content: center; gap: 10px; /* Increased gap */
     position: relative; overflow: hidden;
 }
 footer::before {
     content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
-    background-image: repeating-linear-gradient(to right, var(--color-purple), var(--color-purple) 3px, transparent 3px, transparent 6px);
-    opacity: 0.7;
+    background-image: repeating-linear-gradient(to right, var(--color-primary-accent), var(--color-primary-accent) 3px, transparent 3px, transparent 6px);
+    opacity: 0.6; /* Slightly more subtle */
 }
-.footer-icon { font-size: 1.2em; color: var(--color-purple); }
+.footer-icon { font-size: 1.25em; color: var(--color-primary-accent); } /* Slightly larger icon */
 
 /* Responsividade Adicional */
 @media (max-width: 1024px) { /* Ajustes para tablets e telas menores */
@@ -585,8 +639,70 @@ footer::before {
 }
 
 /* Melhor feedback de foco para navegação via teclado */
-nav a:focus-visible {
-    outline: 2px dashed var(--color-red-pink);
-    outline-offset: 3px;
-    background-color: rgba(228, 51, 89, 0.08);
+nav a:focus-visible, .button-quiz:focus-visible, .button-save:focus-visible, .quiz-nav-button:focus-visible, .icon-button:focus-visible {
+    outline: 3px dashed var(--color-tertiary-accent); /* Yellow outline for high visibility */
+    outline-offset: 4px; /* More offset */
+    background-color: rgba(255, 255, 0, 0.1); /* Subtle yellow background */
+    color: var(--color-tertiary-accent); /* Change text color for more feedback if appropriate, check contrast */
+}
+/* Ensure text on buttons remains dark if background changes significantly on focus */
+.button-quiz:focus-visible, .button-save:focus-visible {
+    color: var(--text-dark); /* Re-assert dark text if background became light yellow */
+}
+#prev-question:focus-visible, #next-question:focus-visible, #submit-quiz-final:focus-visible {
+     /* Keep original text colors for these as their bg is not changing to yellow */
+}
+#prev-question:focus-visible { color: var(--text-dark); }
+#next-question:focus-visible { color: var(--text-dark); }
+#submit-quiz-final:focus-visible { color: var(--text-light); }
+}
+
+/* Custom Alert Styles Override */
+#custom-alert-overlay {
+    background-color: rgba(16, 16, 16, 0.85) !important; /* --bg-dark-primary with alpha */
+    font-family: "Press Start 2P", cursive !important;
+    /* Other overlay styles like position, display, etc., are set by JS and should be fine */
+}
+
+#custom-alert-overlay > div { /* This targets the alertBox */
+    background-color: var(--bg-dark-secondary) !important;
+    color: var(--color-tertiary-accent) !important;
+    border: 3px solid var(--color-secondary-accent) !important;
+    box-shadow: 0 0 20px var(--color-secondary-accent), 0 0 30px var(--color-secondary-accent) inset !important;
+    /* Styles like padding, border-radius, text-align, max-width, animation are set by JS.
+       If they also need overriding, they can be added here with !important.
+       For now, focusing on the color palette update. */
+}
+
+#custom-alert-overlay .quiz-nav-button { /* This targets the closeButton */
+    background-color: var(--color-action-positive) !important;
+    color: var(--text-dark) !important;
+    /* border-color is not strictly needed as .quiz-nav-button has border-width: 0px,
+       but added for completeness if border is ever shown. */
+    border-color: var(--color-action-positive) !important;
+}
+
+/* Checklist Save Status Message Styles */
+#saveStatus {
+    text-align: center;
+    margin-top: 15px;
+    font-size: var(--font-size-sm);
+    height: 1.5em; /* To prevent layout shift */
+    line-height: 1.5em; /* Vertically center text */
+    transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0; /* Start hidden, rely on class to show */
+}
+
+.status-message { /* Base class for saveStatusEl if needed elsewhere, or can be combined with #saveStatus */
+    opacity: 1; /* Default to visible when there's text and a status class */
+}
+
+.status-message.status-success {
+    color: var(--color-action-positive);
+    opacity: 1;
+}
+
+.status-message.status-error {
+    color: var(--color-action-negative);
+    opacity: 1;
 }
